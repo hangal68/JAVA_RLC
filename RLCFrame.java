@@ -1,7 +1,5 @@
 package interface1;
 
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -13,22 +11,13 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,7 +26,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -48,14 +36,19 @@ public class RLCFrame extends JFrame implements ActionListener{
     JPanel lowerPanel;
     JPanel rightPanel;
     JPanel rightLowerPanel;
-    Color upperColor = new Color(229, 204, 255);
-    Color lowerColor = Color.white;
-    Color rightColor = new Color(180, 180, 180);
-    Color buttonColor = new Color(204, 240, 204);
-    JFrame exitFrame;
+    Color upperColorLight = new Color(229, 204, 255);
+    Color lowerColorLight = Color.white;
+    Color rightColorLight = new Color(180, 180, 180);
+    Color buttonColorLight = new Color(204, 240, 204);
+    Color upperColorDark = new Color(53, 17, 50);
+    Color lowerColorDark = new Color(40, 40, 40);
+    Color rightColorDark = new Color(30, 30, 30);
+    Color buttonColorDark = new Color(0, 32, 0);
     
-    Graphics2D g2;
-    Image image;
+    
+    
+    
+    JFrame exitFrame;
     
 	JButton openButton;
 	JButton saveGraphButton;
@@ -78,6 +71,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 	JFileChooser chooser;
 	int returnVal;
 	FileNameExtensionFilter filter;
+	
+	int mode = 0;
 	
 	public RLCFrame() throws HeadlessException {
 
@@ -108,14 +103,14 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          options.add(languages);
          
-         shiftMode = new JMenuItem("Shift Day/Night mode");
+         shiftMode = new JMenuItem("Shift Light/Dark mode");
          shiftMode.setActionCommand("mode");
          shiftMode.addActionListener(this);
          options.add(shiftMode);
          
          //upper Panel
          upperPanel = new JPanel();
-         upperPanel.setBackground(upperColor);
+         upperPanel.setBackground(upperColorLight);
          upperPanel.setBounds(0, 0, this.getWidth() * 78/100, this.getHeight() * 4/10);
          
          
@@ -123,19 +118,20 @@ public class RLCFrame extends JFrame implements ActionListener{
          //lower Panel
          lowerPanel = new JPanel();
          lowerPanel.setBounds(0, this.getHeight() * 4/10, this.getWidth() * 78/100, this.getHeight() * 6/10);
-         lowerPanel.setBackground(lowerColor);
+         lowerPanel.setBackground(lowerColorLight);
          
          
          //right Panel
          rightPanel = new JPanel();
          rightPanel.setBounds(this.getWidth() * 78/100, 0, this.getWidth() * 22/100, this.getHeight() * 70/100);
-         rightPanel.setBackground(rightColor);
+         rightPanel.setBackground(rightColorLight);
          rightPanel.setLayout(new FlowLayout());
 
          
          openButton = new JButton("Open");
          openButton.setPreferredSize(new Dimension(160, 45));
-         openButton.setBackground(buttonColor);
+         openButton.setBackground(buttonColorLight);
+         openButton.setForeground(Color.black);
          openButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          //openButton.setBorder(BorderFactory.createLineBorder(Color.blue));
          openButton.setActionCommand("open");
@@ -145,7 +141,8 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          saveGraphButton = new JButton("Save grahps");
          saveGraphButton.setPreferredSize(new Dimension(160, 45));
-         saveGraphButton.setBackground(buttonColor);
+         saveGraphButton.setBackground(buttonColorLight);
+         saveGraphButton.setForeground(Color.black);
          saveGraphButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          saveGraphButton.setActionCommand("saveGraph");
          saveGraphButton.addActionListener(this);
@@ -154,7 +151,8 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          saveParametersButton = new JButton("Save parameters");
          saveParametersButton.setPreferredSize(new Dimension(160, 45));
-         saveParametersButton.setBackground(buttonColor);
+         saveParametersButton.setBackground(buttonColorLight);
+         saveParametersButton.setForeground(Color.black);
          saveParametersButton.setFont(new java.awt.Font("Arial", Font.BOLD, 15));
          saveParametersButton.setActionCommand("saveParam");
          saveParametersButton.addActionListener(this);
@@ -163,7 +161,8 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          exitButton = new JButton("Exit");
          exitButton.setPreferredSize(new Dimension(160, 45));
-         exitButton.setBackground(buttonColor);
+         exitButton.setBackground(buttonColorLight);
+         exitButton.setForeground(Color.black);
          exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          exitButton.setActionCommand("exit");
          exitButton.addActionListener(this);
@@ -173,7 +172,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          //right lower Panel
          rightLowerPanel = new JPanel();
          rightLowerPanel.setBounds(this.getWidth() * 78/100, this.getHeight() * 70/100, this.getWidth() * 22/100, this.getHeight() * 30/100);
-         rightLowerPanel.setBackground(rightColor);
+         rightLowerPanel.setBackground(rightColorLight);
          rightLowerPanel.setLayout(new FlowLayout());
          
          beginButton = new JButton(new ImageIcon("start.jpg"));
@@ -223,11 +222,46 @@ public class RLCFrame extends JFrame implements ActionListener{
 			case "exit":
 				exitFrame = new JFrame("Exit");
 			    if (JOptionPane.showConfirmDialog(exitFrame,"Are you sure you want to exit?","RLC simulator", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-			            System.exit(0);
+			    	System.exit(0);
 		        break;
 			case "mode":
-				
-				
+				if (mode == 0)
+				{
+					upperPanel.setBackground(upperColorDark);
+				    lowerPanel.setBackground(lowerColorDark);
+				    rightPanel.setBackground(rightColorDark);
+				    rightLowerPanel.setBackground(rightColorDark);
+				    openButton.setBackground(buttonColorDark);
+				    
+					saveGraphButton.setBackground(buttonColorDark);
+					
+					saveParametersButton.setBackground(buttonColorDark);
+					
+					exitButton.setBackground(buttonColorDark);
+					
+					
+					//beginButton;
+				    
+				    mode = 1;
+				}
+				else
+				{
+					upperPanel.setBackground(upperColorLight);
+				    lowerPanel.setBackground(lowerColorLight);
+				    rightPanel.setBackground(rightColorLight);
+				    rightLowerPanel.setBackground(rightColorLight);
+				    openButton.setBackground(buttonColorLight);
+				    
+					saveGraphButton.setBackground(buttonColorLight);
+					
+					saveParametersButton.setBackground(buttonColorLight);
+					
+					exitButton.setBackground(buttonColorLight);
+					
+					
+				    
+				    mode = 0;
+				}
 				break;
 			case "eng":
 				
