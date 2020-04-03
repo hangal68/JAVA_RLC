@@ -33,7 +33,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class RLCFrame extends JFrame implements ActionListener{
 
-	JPanel upperPanel;
+	JPanel upperLeftPanel;
+	JPanel upperRightPanel;
     JPanel lowerPanel;
     JPanel rightPanel;
     JPanel rightLowerPanel;
@@ -110,9 +111,16 @@ public class RLCFrame extends JFrame implements ActionListener{
          options.add(shiftMode);
          
          //upper Panel
-         upperPanel = new JPanel();
-         upperPanel.setBackground(upperColorLight);
-         upperPanel.setBounds(0, 0, this.getWidth() * 78/100, this.getHeight() * 4/10);
+         upperLeftPanel = new JPanel();
+         upperLeftPanel.setBackground(upperColorLight);
+         upperLeftPanel.setBounds(0, 0, this.getWidth() * 35/100, this.getHeight() * 4/10);
+         upperLeftPanel.setLayout(new FlowLayout());
+         //tutaj uk³ad
+         
+         upperRightPanel = new JPanel();
+         upperRightPanel.setBackground(upperColorLight);
+         upperRightPanel.setBounds(this.getWidth() * 35/100, 0, this.getWidth() * 43/100, this.getHeight() * 4/10);
+         upperRightPanel.setLayout(new GridLayout(4, 4));
          
          
          
@@ -202,7 +210,8 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          this.setLayout(null);
          this.add(lowerPanel);
-         this.add(upperPanel);
+         this.add(upperLeftPanel);
+         this.add(upperRightPanel);
          this.add(rightPanel);
          this.add(rightLowerPanel);
          
@@ -236,7 +245,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 			case "mode":
 				if (mode == 0)
 				{
-					upperPanel.setBackground(upperColorDark);
+					upperLeftPanel.setBackground(upperColorDark);
+					upperRightPanel.setBackground(upperColorDark);
 				    lowerPanel.setBackground(lowerColorDark);
 				    rightPanel.setBackground(rightColorDark);
 				    rightLowerPanel.setBackground(rightColorDark);
@@ -255,7 +265,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 				}
 				else
 				{
-					upperPanel.setBackground(upperColorLight);
+					upperLeftPanel.setBackground(upperColorLight);
+					upperRightPanel.setBackground(upperColorLight);
 				    lowerPanel.setBackground(lowerColorLight);
 				    rightPanel.setBackground(rightColorLight);
 				    rightLowerPanel.setBackground(rightColorLight);
