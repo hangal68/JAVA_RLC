@@ -26,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -132,6 +133,8 @@ public class RLCFrame extends JFrame implements ActionListener{
          openButton.setPreferredSize(new Dimension(160, 45));
          openButton.setBackground(buttonColorLight);
          openButton.setForeground(Color.black);
+         openButton.setBorder(new LineBorder(Color.black));
+         
          openButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          //openButton.setBorder(BorderFactory.createLineBorder(Color.blue));
          openButton.setActionCommand("open");
@@ -143,6 +146,8 @@ public class RLCFrame extends JFrame implements ActionListener{
          saveGraphButton.setPreferredSize(new Dimension(160, 45));
          saveGraphButton.setBackground(buttonColorLight);
          saveGraphButton.setForeground(Color.black);
+         saveGraphButton.setBorder(new LineBorder(Color.black));
+         
          saveGraphButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          saveGraphButton.setActionCommand("saveGraph");
          saveGraphButton.addActionListener(this);
@@ -153,6 +158,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          saveParametersButton.setPreferredSize(new Dimension(160, 45));
          saveParametersButton.setBackground(buttonColorLight);
          saveParametersButton.setForeground(Color.black);
+         saveParametersButton.setBorder(new LineBorder(Color.black));
          saveParametersButton.setFont(new java.awt.Font("Arial", Font.BOLD, 15));
          saveParametersButton.setActionCommand("saveParam");
          saveParametersButton.addActionListener(this);
@@ -163,9 +169,11 @@ public class RLCFrame extends JFrame implements ActionListener{
          exitButton.setPreferredSize(new Dimension(160, 45));
          exitButton.setBackground(buttonColorLight);
          exitButton.setForeground(Color.black);
+         exitButton.setBorder(new LineBorder(Color.black));
          exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          exitButton.setActionCommand("exit");
          exitButton.addActionListener(this);
+         
          
          rightPanel.add(exitButton);
          
@@ -178,6 +186,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          beginButton = new JButton(new ImageIcon("startLight.png"));
          //beginButton.setBounds(0, 0, 160, 140);
          beginButton.setPreferredSize(new Dimension(160, 140));
+         beginButton.setBorder(new LineBorder(Color.black));
          beginButton.setActionCommand("begin");
          beginButton.addActionListener(this);
          
