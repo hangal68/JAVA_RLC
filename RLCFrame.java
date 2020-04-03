@@ -175,7 +175,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          rightLowerPanel.setBackground(rightColorLight);
          rightLowerPanel.setLayout(new FlowLayout());
          
-         beginButton = new JButton(new ImageIcon("start.jpg"));
+         beginButton = new JButton(new ImageIcon("startLight.png"));
          //beginButton.setBounds(0, 0, 160, 140);
          beginButton.setPreferredSize(new Dimension(160, 140));
          beginButton.setActionCommand("begin");
@@ -240,7 +240,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 					exitButton.setBackground(buttonColorDark);
 					
 					
-					//beginButton;
+					beginButton.setIcon(new ImageIcon("startDark.png"));
 				    
 				    mode = 1;
 				}
@@ -258,7 +258,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 					
 					exitButton.setBackground(buttonColorLight);
 					
-					
+					beginButton.setIcon(new ImageIcon("startLight.png"));
 				    
 				    mode = 0;
 				}
