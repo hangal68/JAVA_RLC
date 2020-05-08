@@ -3,15 +3,26 @@ package interface1;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 
-public class SimulationPanel {
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+
+
+public class SimulationPanel extends JPanel {
 
 	int N = 2000;
-	double dt = 0.01;
+	double dt = 0.00000001;
 	double t0 = 0;
 	double i0 = 0;
 	double di0 = 0;
-	double f = 1000;
-	double w = f*2*Math.PI;
+	
 	ArrayList<Double> t;
 	ArrayList<Double> i;
 	ArrayList<Double> di;
@@ -19,6 +30,7 @@ public class SimulationPanel {
 	ArrayList<Double> Ul;
 	ArrayList<Double> Uc;
 	
+	JFreeChart chart;
 	public SimulationPanel() throws HeadlessException {
 		
 		t = new ArrayList<Double>(); 
@@ -29,7 +41,16 @@ public class SimulationPanel {
 		Uc = new ArrayList<Double>(); 
 	}
 	    
-	void simulate(double U0, double R, double C, double L)	{
+	public void simulate(double U0, double R, double L, double C, double f)	{
+		
+		double w = f*2*Math.PI;
+		
+		t.clear();
+		i.clear();
+		di.clear();
+		Ur.clear();
+		Ul.clear();
+		Uc.clear();
 		
 		t.add(t0);
 	    i.add(i0);
@@ -48,6 +69,61 @@ public class SimulationPanel {
 	    	// Uc.add
 	    	
 	    }
+	    /*
+	    for (int j = 0; j < N; j++) {
+	    	System.out.println(t.get(j) + "  " + Ul.get(j));
+	    	
+	    }
+	    */
+	}
+	
+	
+	public ChartPanel graphPanel(String parametr) {
+		
+		XYSeries series = new XYSeries("Nazwa serii");
+		
 
+		
+		switch(parametr) {
+			case "Ur":
+				for(int i =0; i<N-1; i++){
+					series.add(t.get(i), Ur.get(i));
+					}
+				break;
+			case "Ul":
+				for(int i =0; i<N-1; i++){
+					series.add(t.get(i), Ul.get(i));
+					}
+				break;
+			case "Uc":
+				for(int i =0; i<N-1; i++){
+					series.add(t.get(i), Uc.get(i));
+					}
+				break;
+			default:
+				
+				break;
+		}
+		
+		
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		dataset.addSeries(series);
+		
+		chart = ChartFactory.createXYLineChart(
+				"U(t)",//Tytul
+				"t(s)", // os X
+				"U (V)", //os Y 
+				dataset, // Dane 
+				PlotOrientation.VERTICAL, // Orjentacja wykresu /HORIZONTAL
+				true, // legenda
+				true, // tooltips
+				false
+			);
+		
+		ChartPanel chartPanel = new ChartPanel( chart );
+		return chartPanel;
 	}
 }
+
+
+
