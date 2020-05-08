@@ -1,3 +1,4 @@
+ 
 package interface1;
 
 import java.awt.BorderLayout;
@@ -13,7 +14,9 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -67,10 +70,15 @@ public class RLCFrame extends JFrame implements ActionListener{
     int max = 80000;
     int init = 70710;
     double freq = 70710;
+    double R = 42;
+    double L = 0.02;
+    double C = 0.00000001;
+    double S = 5;
+    
     		
     JLabel Rlabel, Clabel, Llabel, Slabel;
     JFormattedTextField RTextField, CTextField, LTextField, STextField;
-    JButton RParallel, RSeries, CParallel, CSeries, LParallel, LSeries, SParallel, SSeries; //parallel - rĂłwnolegĹ‚e; series - szeregowe
+    JButton RParallel, RSeries, CParallel, CSeries, LParallel, LSeries, SParallel, SSeries; //parallel - rÄ‚Ĺ‚wnolegÄąâ€še; series - szeregowe
     
     JLabel circuit; //upper left
     
@@ -226,63 +234,79 @@ public class RLCFrame extends JFrame implements ActionListener{
 
          
          //pola tekstowe
-         RTextField = new JFormattedTextField();
+         RTextField = new JFormattedTextField("42");
          RTextField.setPreferredSize(new Dimension(50, 35));
          
-         CTextField = new JFormattedTextField();
+         CTextField = new JFormattedTextField("0.00000001");
          CTextField.setPreferredSize(new Dimension(50, 35));
          
-         LTextField = new JFormattedTextField();
+         LTextField = new JFormattedTextField("0.02");
          LTextField.setPreferredSize(new Dimension(50, 35));
          
-         STextField = new JFormattedTextField();
+         STextField = new JFormattedTextField("5");
          STextField.setPreferredSize(new Dimension(50, 35));
          
          //guziki
          RParallel = new JButton("parallel");
          RParallel.setPreferredSize(new Dimension(115, 35));
+         RParallel.setActionCommand("Rpar");
+         RParallel.addActionListener(this);
          RParallel.setBackground(buttonColorLight);
          RParallel.setForeground(Color.black);
          
          
          RSeries = new JButton("series");
          RSeries.setPreferredSize(new Dimension(115, 35));
+         RSeries.setActionCommand("Rser");
+         RSeries.addActionListener(this);
          RSeries.setBackground(buttonColorLight);
          RSeries.setForeground(Color.black);
          
          
          CParallel = new JButton("parallel");
          CParallel.setPreferredSize(new Dimension(115, 35));
+         CParallel.setActionCommand("Cpar");
+         CParallel.addActionListener(this);
          CParallel.setBackground(buttonColorLight);
          CParallel.setForeground(Color.black);
          
          
          CSeries = new JButton("series");
          CSeries.setPreferredSize(new Dimension(115, 35));
+         CSeries.setActionCommand("Cser");
+         CSeries.addActionListener(this);
          CSeries.setBackground(buttonColorLight);
          CSeries.setForeground(Color.black);
          
          
          LParallel = new JButton("parallel");
          LParallel.setPreferredSize(new Dimension(115, 35));
+         LParallel.setActionCommand("Lpar");
+         LParallel.addActionListener(this);
          LParallel.setBackground(buttonColorLight);
          LParallel.setForeground(Color.black);
          
         
          LSeries = new JButton("series");
          LSeries.setPreferredSize(new Dimension(115, 35));
+         LSeries.setActionCommand("Lser");
+         LSeries.addActionListener(this);
          LSeries.setBackground(buttonColorLight);
          LSeries.setForeground(Color.black);
          
          
          SParallel  = new JButton("parallel");
          SParallel.setPreferredSize(new Dimension(115, 35));
+         SParallel.setActionCommand("Spar");
+         SParallel.addActionListener(this);
          SParallel.setBackground(buttonColorLight);
          SParallel.setForeground(Color.black);
          
          
          SSeries = new JButton("series");
          SSeries.setPreferredSize(new Dimension(115, 35));
+         SSeries.setActionCommand("Sser");
+         SSeries.addActionListener(this);
          SSeries.setBackground(buttonColorLight);
          SSeries.setForeground(Color.black);
          
@@ -310,7 +334,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          UpperL.add(LSeries);
          upperRightPanel.add(UpperL);
          
-         //ĹşrĂłdĹ‚o
+         //ÄąĹźrÄ‚Ĺ‚dÄąâ€šo
          UpperS.add(Slabel);
          UpperS.add(STextField);
          UpperS.add(SParallel);
@@ -404,8 +428,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          rightLowerPanel.add(beginButton);
          
          
-         test.simulate(5, 42, 0.02, 0.00000001, freq);
-         //test.simulate(1000, 100, 10, 42);
+         test.simulate(S, R, L, C, freq);
          lowerPanel.add(test.graphPanel("Ul"));
          
        
@@ -431,7 +454,9 @@ public class RLCFrame extends JFrame implements ActionListener{
 
 		switch (action) {
 			case "begin":
-				
+				//test.simulate(S, R, L, C, freq);
+		        //lowerPanel.add(test.graphPanel("Ul"));
+		        
 				break;
 			case "open":
 				chooseropen = new JFileChooser();
@@ -449,18 +474,63 @@ public class RLCFrame extends JFrame implements ActionListener{
 				break;
 			case "saveGraph":
 				chooserGraph = new JFileChooser();
+				//File fileToSave = null;
 				FileNameExtensionFilter filterG = new FileNameExtensionFilter("jpg files", "jpg");
 	            chooserGraph.setFileFilter(filterG);
-				//int returnV = 
-				chooserGraph.showDialog(null, "Save");
+	            chooserGraph.showDialog(null, "Save");
+	           /* BufferedImage im = new BufferedImage(lowerPanel.getWidth(), lowerPanel.getHeight(),BufferedImage.TYPE_INT_RGB);
+				
+				try {
+					int userSelection = chooserGraph.showDialog(null, "Save");
+					
+					if (userSelection == JFileChooser.APPROVE_OPTION) {
+					    fileToSave = chooser.getSelectedFile();
+					}
+					
+
+			        
+			           
+			            Graphics g = lowerPanel.getGraphics();
+			            paint(g);
+			            ImageIO.write(im, "jpg", fileToSave);
+					
+				} catch (IOException ee) {
+					ee.printStackTrace();
+				}*/
+            
+				/*
+				 * BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2 = image.createGraphics();
+		paint(g2);
+		try{
+			ImageIO.write(image, type, new File(name+"."+type));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				 */
 				
 				break;
 			case "saveParam":
-				chooserPar = new JFileChooser();
+				
+				
+		
+				
+				File outputFile = null;
+				chooserPar = new JFileChooser("Save");
 				FileNameExtensionFilter filterP = new FileNameExtensionFilter("txt files", "txt");
 	            chooserPar.setFileFilter(filterP);
-				//int returnV = 
-				chooserPar.showDialog(null, "Save");
+				int returnVal = chooser.showOpenDialog(null);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	outputFile = chooser.getSelectedFile();
+			    }
+				/*
+				try {
+					ImageIO.write(image, "png", outputFile);
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+				*/
+				//chooserPar.showDialog(null, "Save");
 				break;
 			case "exit":
 				exitFrame = new JFrame("Exit");
@@ -521,7 +591,10 @@ public class RLCFrame extends JFrame implements ActionListener{
 					Llabel.setIcon(new ImageIcon((new ImageIcon("obrazki/LDark.jpg").getImage().getScaledInstance(60, 35, Image.SCALE_DEFAULT))));
 					Clabel.setIcon(new ImageIcon((new ImageIcon("obrazki/CDark.jpg").getImage().getScaledInstance(60, 35, Image.SCALE_DEFAULT))));
 					Slabel.setIcon(new ImageIcon((new ImageIcon("obrazki/SourceDark.jpg").getImage().getScaledInstance(60, 35, Image.SCALE_DEFAULT))));
-				    mode = 1;
+				   
+					UpperSlider.setBackground(upperColorDark);
+					slider.setBackground(upperColorDark);
+					mode = 1;
 				}
 				else
 				{
@@ -573,7 +646,9 @@ public class RLCFrame extends JFrame implements ActionListener{
 					Clabel.setIcon(new ImageIcon((new ImageIcon("obrazki/C.jpg").getImage().getScaledInstance(60, 35, Image.SCALE_DEFAULT))));
 					Slabel.setIcon(new ImageIcon((new ImageIcon("obrazki/source.jpg").getImage().getScaledInstance(60, 35, Image.SCALE_DEFAULT))));
 				    
-				    mode = 0;
+					UpperSlider.setBackground(upperColorLight);
+					slider.setBackground(upperColorLight);
+					mode = 0;
 				}
 				break;
 			case "eng":
@@ -634,6 +709,37 @@ public class RLCFrame extends JFrame implements ActionListener{
 				languages.setText("č˝¬ćŤ˘čŻ­č¨€");
 				shiftMode.setText("ç™˝/é»‘čż�čˇŚć–ąĺĽŹ");
 				
+				break;
+			case "Rpar":
+				
+				break;
+				
+			case "Rser":
+				R = Double.parseDouble(RTextField.getText());
+				break;
+				
+			case "Cpar":
+				
+				break;
+				
+			case "Cser":
+				C = Double.parseDouble(CTextField.getText());
+				break;
+				
+			case "Lpar":
+				
+				break;
+				
+			case "Lser":
+				L = Double.parseDouble(LTextField.getText());
+				break;
+				
+			case "Spar":
+				
+				break;
+				
+			case "Sser":
+				S = Double.parseDouble(STextField.getText());
 				break;
 		}
 		

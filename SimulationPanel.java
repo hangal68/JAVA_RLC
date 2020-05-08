@@ -17,8 +17,8 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class SimulationPanel extends JPanel {
 
-	int N = 2000;
-	double dt = 0.00000001;
+	int N = 40000;
+	double dt = 0.000000005;
 	double t0 = 0;
 	double i0 = 0;
 	double di0 = 0;
@@ -124,6 +124,5 @@ public class SimulationPanel extends JPanel {
 		return chartPanel;
 	}
 }
-
 
 
