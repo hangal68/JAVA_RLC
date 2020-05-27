@@ -70,7 +70,6 @@ public class RLCFrame extends JFrame implements ActionListener{
     //lower
     JLabel graph1, graph2;
     
-    JFrame exitFrame;
     
 	JButton openButton, saveGraphButton, saveParametersButton, exitButton, beginButton;
 
@@ -530,7 +529,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 				//chooserPar.showDialog(null, "Save");
 				break;
 			case "exit":
-				exitFrame = new JFrame("Exit");
+				JFrame exitFrame = new JFrame("Exit");
 			    if (JOptionPane.showConfirmDialog(exitFrame,"Are you sure you want to exit?","RLC simulator", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
 			    	System.exit(0);
 		        break;
