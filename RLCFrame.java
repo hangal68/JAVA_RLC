@@ -47,33 +47,18 @@ public class RLCFrame extends JFrame implements ActionListener{
 
 	SimulationPanel test = new SimulationPanel();
 	
-	JPanel upperLeftPanel;
-	JPanel upperRightPanel;
-    JPanel lowerPanel;
-    JPanel rightPanel;
-    JPanel rightLowerPanel;
-    Color upperColorLight = new Color(229, 204, 255);
-    Color lowerColorLight = Color.white;
-    Color rightColorLight = new Color(180, 180, 180);
-    Color buttonColorLight = new Color(204, 240, 204);
-    Color upperColorDark = new Color(53, 17, 50);
-    Color lowerColorDark = new Color(40, 40, 40);
-    Color rightColorDark = new Color(30, 30, 30);
-    Color buttonColorDark = new Color(0, 32, 0);
+	JPanel upperLeftPanel, upperRightPanel, lowerPanel, rightPanel, rightLowerPanel;
     
+    Color upperColorLight, lowerColorLight, rightColorLight, buttonColorLight, upperColorDark, lowerColorDark, rightColorDark, buttonColorDark;
+
     //upper right
     JPanel UpperR, UpperC, UpperL, UpperS, UpperSlider;
     JSlider slider;
     JLabel sliderLabel;
     JFormattedTextField SliderTextField;
-    int min = 0;
-    int max = 80000;
-    int init = 70710;
-    double freq = 70710;
-    double R = 42;
-    double L = 0.02;
-    double C = 0.00000001;
-    double S = 5;
+    int min, max, init;
+    
+    double freq, R, L, C, S;
     
     		
     JLabel Rlabel, Clabel, Llabel, Slabel;
@@ -87,40 +72,29 @@ public class RLCFrame extends JFrame implements ActionListener{
     
     JFrame exitFrame;
     
-	JButton openButton;
-	JButton saveGraphButton;
-	JButton saveParametersButton;
-	JButton exitButton;
-	JButton beginButton;
+	JButton openButton, saveGraphButton, saveParametersButton, exitButton, beginButton;
 
 	JLabel graphLabel;
 	
 	JMenuBar jmb;
     JMenu options;
-    JMenuItem languages;
-    JMenuItem shiftMode;
-    JMenuItem eng;
-    JMenuItem pol;
-    JMenuItem chin;
+    JMenuItem languages, shiftMode, eng, pol, chin;
     
 	
-	BufferedImage image2;
-	JFileChooser chooser, chooseropen, chooserGraph, chooserPar;
-	int returnVal;
-	FileNameExtensionFilter filter;
-	File file;
+	BufferedImage image2;//
+	//JFileChooser chooser, chooseropen, chooserGraph, chooserPar;
+	//int returnVal;
+	//FileNameExtensionFilter filter;
+	//File file;
 	
-	int mode = 0;
+	int mode;
 	
     public class SliderChangeListener implements ChangeListener{
 
         @Override
         public void stateChanged(ChangeEvent arg0) {
         	freq = slider.getValue();
-        	SliderTextField.setText(Double.toString(freq) + " Hz");
-        	
-            
-            
+        	SliderTextField.setText(Double.toString(freq) + " Hz"); 
         }
 
     }
@@ -130,11 +104,23 @@ public class RLCFrame extends JFrame implements ActionListener{
 		 this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
          this.setSize(1024, 768);
 		 this.setResizable(false);
+		 
+		 upperColorLight = new Color(229, 204, 255);
+		 lowerColorLight = Color.white;
+		 rightColorLight = new Color(180, 180, 180);
+		 buttonColorLight = new Color(204, 240, 204);
+		 upperColorDark = new Color(53, 17, 50);
+		 lowerColorDark = new Color(40, 40, 40);
+		 rightColorDark = new Color(30, 30, 30);
+		 buttonColorDark = new Color(0, 32, 0);
+		 
+		 mode = 0;
+		 
          //top menu options
-         jmb = new JMenuBar();
+		 JMenuBar jmb = new JMenuBar();
          this.setJMenuBar(jmb);
          
-         options = new JMenu("Options");
+         JMenu options = new JMenu("Options");
          jmb.add(options);
          
          languages = new JMenu("Change language");
@@ -176,6 +162,17 @@ public class RLCFrame extends JFrame implements ActionListener{
          upperRightPanel.setBackground(upperColorLight);
          upperRightPanel.setBounds(this.getWidth() * 35/100, 0, this.getWidth() * 43/100, this.getHeight() * 4/10);
          upperRightPanel.setLayout(new GridLayout(5, 1));
+         
+         //zmienne
+         min = 0;
+         max = 80000;
+         init = 70710;
+         freq = 70710;
+         R = 42;
+         L = 0.02;
+         C = 0.00000001;
+         S = 5;
+         
          
          //panele
          UpperR = new JPanel();
@@ -459,7 +456,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 		        
 				break;
 			case "open":
-				chooseropen = new JFileChooser();
+				JFileChooser chooseropen = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("txt files", "txt");
 	            chooseropen.setFileFilter(filter);
 				//int returnV = 
@@ -473,7 +470,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 				
 				break;
 			case "saveGraph":
-				chooserGraph = new JFileChooser();
+				JFileChooser chooserGraph = new JFileChooser();
 				//File fileToSave = null;
 				FileNameExtensionFilter filterG = new FileNameExtensionFilter("jpg files", "jpg");
 	            chooserGraph.setFileFilter(filterG);
@@ -516,12 +513,12 @@ public class RLCFrame extends JFrame implements ActionListener{
 		
 				
 				File outputFile = null;
-				chooserPar = new JFileChooser("Save");
+				JFileChooser chooserPar = new JFileChooser("Save");
 				FileNameExtensionFilter filterP = new FileNameExtensionFilter("txt files", "txt");
 	            chooserPar.setFileFilter(filterP);
-				int returnVal = chooser.showOpenDialog(null);
+				int returnVal = chooserPar.showOpenDialog(null);
 				if(returnVal == JFileChooser.APPROVE_OPTION) {
-			    	outputFile = chooser.getSelectedFile();
+			    	outputFile = chooserPar.getSelectedFile();
 			    }
 				/*
 				try {

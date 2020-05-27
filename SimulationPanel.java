@@ -17,6 +17,9 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class SimulationPanel extends JPanel {
 
+	
+	private static final long serialVersionUID = 1L;
+	
 	int N = 40000;
 	double dt = 0.000000005;
 	double t0 = 0;
@@ -30,7 +33,6 @@ public class SimulationPanel extends JPanel {
 	ArrayList<Double> Ul;
 	ArrayList<Double> Uc;
 	
-	JFreeChart chart;
 	public SimulationPanel() throws HeadlessException {
 		
 		t = new ArrayList<Double>(); 
@@ -88,17 +90,17 @@ public class SimulationPanel extends JPanel {
 			case "Ur":
 				for(int i =0; i<N-1; i++){
 					series.add(t.get(i), Ur.get(i));
-					}
+				}
 				break;
 			case "Ul":
 				for(int i =0; i<N-1; i++){
 					series.add(t.get(i), Ul.get(i));
-					}
+				}
 				break;
 			case "Uc":
 				for(int i =0; i<N-1; i++){
 					series.add(t.get(i), Uc.get(i));
-					}
+				}
 				break;
 			default:
 				
@@ -109,7 +111,7 @@ public class SimulationPanel extends JPanel {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series);
 		
-		chart = ChartFactory.createXYLineChart(
+		JFreeChart chart = ChartFactory.createXYLineChart(
 				"U(t)",//Tytul
 				"t(s)", // os X
 				"U (V)", //os Y 
