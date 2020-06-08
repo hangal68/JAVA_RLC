@@ -77,7 +77,7 @@ public class RLCFrame extends JFrame implements ActionListener{
     		
     JLabel Rlabel, Clabel, Llabel, Slabel;
     JFormattedTextField RTextField, CTextField, LTextField, STextField;
-    JButton RParallel, RSeries, CParallel, CSeries, LParallel, LSeries, SParallel, SSeries; //parallel - rÄ‚Ĺ‚wnolegÄąâ€še; series - szeregowe
+    JButton RParallel, RSeries, CParallel, CSeries, LParallel, LSeries, SParallel, SSeries; //parallel - rĂ„â€šÄąâ€šwnolegĂ„Ä…Ă˘â‚¬Ĺˇe; series - szeregowe
     
     JLabel circuit; //upper left
     
@@ -128,7 +128,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 	public RLCFrame() throws HeadlessException {
 
 		 this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-         this.setSize(1024, 768);
+         this.setSize(1024, 850);
 		 this.setResizable(false);
          //top menu options
          jmb = new JMenuBar();
@@ -147,7 +147,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          pol.setActionCommand("pol");
          pol.addActionListener(this);
          languages.add(pol);
-         chin = new JMenuItem("ć±‰čŻ­");
+         chin = new JMenuItem("Ä‡Â±â€°ÄŤĹ»Â­");
          chin.setActionCommand("chin");
          chin.addActionListener(this);
          languages.add(chin);
@@ -303,7 +303,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          SParallel.setForeground(Color.black);
          
          
-         SSeries = new JButton("series");
+         SSeries = new JButton("操你妈");
          SSeries.setPreferredSize(new Dimension(115, 35));
          SSeries.setActionCommand("Sser");
          SSeries.addActionListener(this);
@@ -334,7 +334,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          UpperL.add(LSeries);
          upperRightPanel.add(UpperL);
          
-         //ÄąĹźrÄ‚Ĺ‚dÄąâ€šo
+         //Ă„Ä…ÄąĹşrĂ„â€šÄąâ€šdĂ„Ä…Ă˘â‚¬Ĺˇo
          UpperS.add(Slabel);
          UpperS.add(STextField);
          UpperS.add(SParallel);
@@ -630,43 +630,43 @@ public class RLCFrame extends JFrame implements ActionListener{
 				shiftMode.setText("Shift Light/Dark mode");
 				break;
 			case "pol":
-				RParallel.setText("rĂłwnolegle");
+				RParallel.setText("rÄ‚Ĺ‚wnolegle");
 				RSeries.setText("szeregowo");
-				LParallel.setText("rĂłwnolegle");
+				LParallel.setText("rÄ‚Ĺ‚wnolegle");
 				LSeries.setText("szeregowo");
-				CParallel.setText("rĂłwnolegle");
+				CParallel.setText("rÄ‚Ĺ‚wnolegle");
 				CSeries.setText("szeregowo");
-				SParallel.setText("rĂłwnolegle");
+				SParallel.setText("rÄ‚Ĺ‚wnolegle");
 				SSeries.setText("szeregowo");
 				
-				openButton.setText("OtwĂłrz");
+				openButton.setText("OtwÄ‚Ĺ‚rz");
 				saveGraphButton.setText("Zapisz wykres");
 				saveParametersButton.setText("Zapisz parametry");
-				exitButton.setText("WyjĹ›cie");
+				exitButton.setText("WyjÄąâ€şcie");
 				
 				options.setText("Opcje");
-				languages.setText("ZmieĹ„ jÄ™zyk");
+				languages.setText("ZmieÄąâ€ž jĂ„â„˘zyk");
 				shiftMode.setText("Tryb jasny/ciemny");
 				
 				break;
 			case "chin":
-				RParallel.setText("ĺą¶č�”");
-				RSeries.setText("ä¸˛č�”");
-				LParallel.setText("ĺą¶č�”");
-				LSeries.setText("ä¸˛č�”");
-				CParallel.setText("ĺą¶č�”");
-				CSeries.setText("ä¸˛č�”");
-				SParallel.setText("ĺą¶č�”");
-				SSeries.setText("ä¸˛č�”");
+				RParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				RSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				LParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				LSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				CParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				CSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				SParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				SSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
 				
-				openButton.setText("ĺĽ€");
-				saveGraphButton.setText("äżťĺ­�ĺ›ľć ‡");
-				saveParametersButton.setText("äżťĺ­�ĺŹ‚ć•°");
-				exitButton.setText("é€€ĺ‡ş");
+				openButton.setText("ÄşÄ˝â‚¬");
+				saveGraphButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝Äşâ€şÄľÄ‡ â€ˇ");
+				saveParametersButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝ÄşĹąâ€šÄ‡â€˘Â°");
+				exitButton.setText("Ă©â‚¬â‚¬Äşâ€ˇĹź");
 				
-				options.setText("ćśźćť�");
-				languages.setText("č˝¬ćŤ˘čŻ­č¨€");
-				shiftMode.setText("ç™˝/é»‘čż�čˇŚć–ąĺĽŹ");
+				options.setText("Ä‡Ĺ›ĹşÄ‡ĹĄďż˝");
+				languages.setText("ÄŤËťÂ¬Ä‡Ĺ¤Ë�ÄŤĹ»Â­ÄŤÂ¨â‚¬");
+				shiftMode.setText("Ă§â„˘Ëť/Ă©Â»â€�ÄŤĹĽďż˝ÄŤË‡ĹšÄ‡â€“Ä…ÄşÄ˝Ĺą");
 				
 				break;
 			case "Rpar":
