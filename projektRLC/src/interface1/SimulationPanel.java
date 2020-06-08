@@ -57,7 +57,7 @@ public class SimulationPanel extends JPanel {
 		Ic = new ArrayList<Double>();
 		
 	
-		XYDataset dataset = createDataSet(null);
+		XYDataset dataset = createEmptyDataSet();
 		
 		
 		
@@ -79,12 +79,25 @@ public class SimulationPanel extends JPanel {
 	
 	}
 	
-	public XYDataset createDataSet(String parametr) {
+	public XYDataset createEmptyDataSet() {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		series = new XYSeries("");
 		Rseries = new XYSeries("UR");
 		Lseries = new XYSeries("UL");
 		Cseries = new XYSeries("UC");
+		dataset.addSeries(series);
+		dataset.addSeries(Rseries);
+		dataset.addSeries(Lseries);
+		dataset.addSeries(Cseries);
+		
+		
+		return dataset;
+	
+	}
+	
+	public XYDataset createDataSet(String parametr) {
+		
+		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series);
 		dataset.addSeries(Rseries);
 		dataset.addSeries(Lseries);
@@ -280,41 +293,31 @@ public class SimulationPanel extends JPanel {
 	
 	public void addingSeries(String parametr) {
 		
+		Rseries.clear();
+		Lseries.clear();
+		Cseries.clear();
 		
 		switch(parametr) {
-		case "Ur":
-			for(int i =0; i<N-1; i++){
-				Rseries.add(t.get(i), Ur.get(i));
-			}
-			break;
-		case "Ul":
-			for(int i =0; i<N-1; i++){
-				Lseries.add(t.get(i), Ul.get(i));
-			}
-			break;
-		case "Uc":
-			for(int i =0; i<N-1; i++){
-				Cseries.add(t.get(i), Uc.get(i));
-			}
-			break;
-		case "Ir":
-			for(int i =0; i<N-1; i++){
-				Rseries.add(t.get(i), Ir.get(i));
-			}
-			break;
-		case "Il":
-			for(int i =0; i<N-1; i++){
-				Lseries.add(t.get(i), Il.get(i));
-			}
-			break;
-		case "Ic":
-			for(int i =0; i<N-1; i++){
-				Cseries.add(t.get(i), Ic.get(i));
-			}
-			break;
-		default:
-			
-			break;
+			case "series":
+				
+				for(int i =0; i<N-1; i++){
+					Rseries.add(t.get(i), Ur.get(i));
+					Lseries.add(t.get(i), Ul.get(i));
+					Cseries.add(t.get(i), Uc.get(i));
+					//System.out.println("sda");
+				}
+				break;
+			case "parallel":
+				for(int i =0; i<N-1; i++){
+					Rseries.add(t.get(i), Ir.get(i));
+					Lseries.add(t.get(i), Il.get(i));
+					Cseries.add(t.get(i), Ic.get(i));
+				}
+				break;
+	
+			default:
+				
+				break;
 	}
 		
 		

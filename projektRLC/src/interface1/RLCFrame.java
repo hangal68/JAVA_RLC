@@ -44,11 +44,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class RLCFrame extends JFrame implements ActionListener{
 
-	SimulationPanel test = new SimulationPanel();
 	
 	JPanel upperLeftPanel;
 	JPanel upperRightPanel;
-    JPanel lowerPanel;
     JPanel rightPanel;
     JPanel rightLowerPanel;
     Color upperColorLight = new Color(229, 204, 255);
@@ -305,7 +303,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          SParallel.setForeground(Color.black);
          
          
-         SSeries = new JButton("操你妈");
+         SSeries = new JButton("series");
          SSeries.setPreferredSize(new Dimension(115, 35));
          SSeries.setActionCommand("Sser");
          SSeries.addActionListener(this);
@@ -347,17 +345,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          upperRightPanel.add(UpperSlider);
          
          
-         //lower Panel
-         lowerPanel = new JPanel();
-         lowerPanel.setBounds(0, this.getHeight() * 4/10, this.getWidth() * 78/100, this.getHeight() * 6/10);
-         lowerPanel.setBackground(lowerColorLight);
-         lowerPanel.setLayout(new GridLayout(1,2));
-         /*graph1 = new JLabel();
-         graph1.setIcon(new ImageIcon(new ImageIcon("obrazki/wykres1.jpg").getImage().getScaledInstance(409, 299, Image.SCALE_DEFAULT)));
-         graph2 = new JLabel();
-         graph2.setIcon(new ImageIcon(new ImageIcon("obrazki/wykres2.jpg").getImage().getScaledInstance(409, 299, Image.SCALE_DEFAULT)));
-         lowerPanel.add(graph1);
-         lowerPanel.add(graph2);*/
+
          
          //right Panel
          rightPanel = new JPanel();
@@ -431,11 +419,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          simulationPanel = new SimulationPanel();
          simulationPanel.setBounds(0, this.getHeight() * 4/10, this.getWidth() * 78/100, this.getHeight() * 6/10);
- 		simulationPanel.setBackground(Color.white);
-         
-       
-         
-        
+ 		 simulationPanel.setBackground(Color.white);
          
          this.setLayout(null);
          this.add(simulationPanel);
@@ -443,7 +427,6 @@ public class RLCFrame extends JFrame implements ActionListener{
          this.add(upperRightPanel);
          this.add(rightPanel);
          this.add(rightLowerPanel);
-         this.add(test);
          
 	}
 	 
@@ -456,8 +439,9 @@ public class RLCFrame extends JFrame implements ActionListener{
 
 		switch (action) {
 			case "begin":
-				//test.simulate(S, R, L, C, freq);
-		        //lowerPanel.add(test.graphPanel("Ul"));
+				simulationPanel.simulate(S, R, L, C, freq, "RLCser");
+		        simulationPanel.addingSeries("series");
+		        simulationPanel.createDataSet("nic");
 		        
 				break;
 			case "open":
@@ -507,7 +491,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 					UpperL.setBackground(upperColorDark);
 					UpperS.setBackground(upperColorDark);
 					upperRightPanel.setBackground(upperColorDark);
-				    lowerPanel.setBackground(lowerColorDark);
 				    rightPanel.setBackground(rightColorDark);
 				    rightLowerPanel.setBackground(rightColorDark);
 				    
@@ -565,7 +548,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 					UpperC.setBackground(upperColorLight);
 					UpperL.setBackground(upperColorLight);
 					UpperS.setBackground(upperColorLight);
-				    lowerPanel.setBackground(lowerColorLight);
 				    rightPanel.setBackground(rightColorLight);
 				    rightLowerPanel.setBackground(rightColorLight);
 				    
