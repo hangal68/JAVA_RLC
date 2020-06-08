@@ -257,7 +257,7 @@ public class SimulationPanel extends JPanel {
 				Ir.clear();
 				Il.clear();
 				Ic.clear();
-				
+				//
 			    u.add(u0);
 			    du.add(U0 * w);
 			    Ir.add(u0 / R);
