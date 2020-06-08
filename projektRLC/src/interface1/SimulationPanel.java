@@ -25,7 +25,7 @@ public class SimulationPanel extends JPanel {
 	double i0 = 0;
 	double u0 = 0;
 	
-	
+	//
     ArrayList<Double> t, Uwe;
 	//do szeregowego
 	ArrayList<Double> i, di, Ur, Ul, Uc;
