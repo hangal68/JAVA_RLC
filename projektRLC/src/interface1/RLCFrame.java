@@ -102,6 +102,7 @@ public class RLCFrame extends JFrame implements ActionListener{
     JMenuItem pol;
     JMenuItem chin;
     
+    SimulationPanel simulationPanel;
 	
 	BufferedImage image2;
 	JFileChooser chooser, chooseropen, chooserGraph, chooserPar;
@@ -418,7 +419,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          rightLowerPanel.setLayout(new FlowLayout());
          
          beginButton = new JButton(new ImageIcon("obrazki/startLight.png"));
-         //beginButton.setBounds(0, 0, 160, 140);
+         beginButton.setBounds(0, 0, 160, 140);
          beginButton.setPreferredSize(new Dimension(160, 140));
          beginButton.setBorder(new LineBorder(Color.black));
          beginButton.setActionCommand("begin");
@@ -426,16 +427,16 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          rightLowerPanel.add(beginButton);
          
-         
-         test.simulate(S, R, L, C, freq);
-         lowerPanel.add(test.graphPanel("Ul"));
+         simulationPanel = new SimulationPanel();
+         simulationPanel.setBounds(0, this.getHeight() * 4/10, this.getWidth() * 78/100, this.getHeight() * 6/10);
+ 		simulationPanel.setBackground(Color.white);
          
        
          
         
          
          this.setLayout(null);
-         this.add(lowerPanel);
+         this.add(simulationPanel);
          this.add(upperLeftPanel);
          this.add(upperRightPanel);
          this.add(rightPanel);
@@ -472,63 +473,23 @@ public class RLCFrame extends JFrame implements ActionListener{
 				
 				break;
 			case "saveGraph":
-				chooserGraph = new JFileChooser();
-				//File fileToSave = null;
-				FileNameExtensionFilter filterG = new FileNameExtensionFilter("jpg files", "jpg");
-	            chooserGraph.setFileFilter(filterG);
-	            chooserGraph.showDialog(null, "Save");
-	           /* BufferedImage im = new BufferedImage(lowerPanel.getWidth(), lowerPanel.getHeight(),BufferedImage.TYPE_INT_RGB);
-				
-				try {
-					int userSelection = chooserGraph.showDialog(null, "Save");
-					
-					if (userSelection == JFileChooser.APPROVE_OPTION) {
-					    fileToSave = chooser.getSelectedFile();
-					}
-					
-			        
-			           
-			            Graphics g = lowerPanel.getGraphics();
-			            paint(g);
-			            ImageIO.write(im, "jpg", fileToSave);
-					
-				} catch (IOException ee) {
-					ee.printStackTrace();
-				}*/
-            
-				/*
-				 * BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = image.createGraphics();
-		paint(g2);
-		try{
-			ImageIO.write(image, type, new File(name+"."+type));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-				 */
-				
-				break;
-			case "saveParam":
-				
-				
-		
-				
-				File outputFile = null;
-				chooserPar = new JFileChooser("Save");
-				FileNameExtensionFilter filterP = new FileNameExtensionFilter("txt files", "txt");
-	            chooserPar.setFileFilter(filterP);
-				int returnVal = chooser.showOpenDialog(null);
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-			    	outputFile = chooser.getSelectedFile();
-			    }
-				/*
-				try {
-					ImageIO.write(image, "png", outputFile);
-				} catch (IOException e) {
-					System.out.println(e.getMessage());
-				}
-				*/
-				//chooserPar.showDialog(null, "Save");
+				JFileChooser chooser = new JFileChooser();
+				BufferedImage image = new BufferedImage(simulationPanel.getWidth(), simulationPanel.getHeight(),BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = image.createGraphics();
+                simulationPanel.paintAll(g2d);
+                
+                
+                FileNameExtensionFilter filterr = new FileNameExtensionFilter("PNG Images", "png");
+                chooser.setFileFilter(filterr);
+                int returnV = chooser.showDialog(null, "Save");
+                try { 
+                    if(returnV == JFileChooser.APPROVE_OPTION) {
+                        ImageIO.write(image, "png", chooser.getSelectedFile());
+                        
+                    }
+                } catch (IOException ee) {
+                    System.out.println(ee.getMessage());
+                }
 				break;
 			case "exit":
 				exitFrame = new JFrame("Exit");

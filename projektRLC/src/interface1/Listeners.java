@@ -1,11 +1,14 @@
 package interface1;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class Listeners implements ActionListener {
 
@@ -35,6 +38,7 @@ public class Listeners implements ActionListener {
 	
 	public void actionPerformed(ActionEvent arg0) {
 		
+		
 		String action = arg0.getActionCommand();
 
 		switch (action) {
@@ -59,6 +63,24 @@ public class Listeners implements ActionListener {
 				
 				break;
 			case "saveGraph":
+				
+				/*JFileChooser chooser = new JFileChooser();
+				BufferedImage image = new BufferedImage(centralPanel.getWidth(), centralPanel.getHeight(),BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = image.createGraphics();
+                
+                
+                
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG Images", "png");
+                chooser.setFileFilter(filter);
+                int returnV = chooser.showDialog(null, "Save");
+                try { 
+                    if(returnV == JFileChooser.APPROVE_OPTION) {
+                        ImageIO.write(image, "png", chooser.getSelectedFile());
+                        
+                    }
+                } catch (IOException ee) {
+                    System.out.println(ee.getMessage());
+                }
 				/*
 				chooserGraph = new JFileChooser();
 				//File fileToSave = null;
@@ -328,7 +350,7 @@ public class Listeners implements ActionListener {
 				simulationPanel.S = Double.parseDouble(upperRight.STextField.getText());
 				break;
 		}
+	
+	
 	}
-	
-	
 }
