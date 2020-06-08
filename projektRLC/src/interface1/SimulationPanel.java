@@ -10,6 +10,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -36,6 +37,11 @@ public class SimulationPanel extends JPanel {
 	ArrayList<Double> Ul;
 	ArrayList<Double> Uc;
 	
+	XYSeries series;
+	XYSeries Rseries;
+	XYSeries Lseries;
+	XYSeries Cseries;
+	
 	JFreeChart chart;
 	public SimulationPanel() throws HeadlessException {
 		
@@ -48,10 +54,10 @@ public class SimulationPanel extends JPanel {
 	
 	
 	
-		XYSeries series = new XYSeries("Nazwa serii");
 		
-		XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(series);
+		XYDataset dataset = createDataSet(null);
+		
+		
 		
 		chart = ChartFactory.createXYLineChart(
 				"U(t)",//Tytul
@@ -68,6 +74,22 @@ public class SimulationPanel extends JPanel {
 		this.add(chartPanel);
 	
 	
+	
+	}
+	
+	public XYDataset createDataSet(String parametr) {
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		series = new XYSeries("");
+		Rseries = new XYSeries("UR");
+		Lseries = new XYSeries("UL");
+		Cseries = new XYSeries("UC");
+		dataset.addSeries(series);
+		dataset.addSeries(Rseries);
+		dataset.addSeries(Lseries);
+		dataset.addSeries(Cseries);
+		
+		
+		return dataset;
 	
 	}
 	    
@@ -108,35 +130,32 @@ public class SimulationPanel extends JPanel {
 	}
 	
 	
-	//public ChartPanel graphPanel(String parametr) {
+	public void addingSeries(String parametr) {
 		
 		
-		
-
-		/*
 		switch(parametr) {
 			case "Ur":
 				for(int i =0; i<N-1; i++){
-					series.add(t.get(i), Ur.get(i));
+					Rseries.add(t.get(i), Ur.get(i));
 					}
 				break;
 			case "Ul":
 				for(int i =0; i<N-1; i++){
-					series.add(t.get(i), Ul.get(i));
+					Lseries.add(t.get(i), Ul.get(i));
 					}
 				break;
 			case "Uc":
 				for(int i =0; i<N-1; i++){
-					series.add(t.get(i), Uc.get(i));
+					Cseries.add(t.get(i), Uc.get(i));
 					}
 				break;
 			default:
 				
 				break;
 		}
-		*/
 		
 		
-		//return chartPanel;
+		
+	
 	}
-//}
+}

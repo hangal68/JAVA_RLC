@@ -12,7 +12,7 @@ import javax.swing.JMenuItem;
 
 public class Menu extends JMenuBar {
 
-	Listeners listener = new Listeners();
+
 	
 	JMenuBar jmb;
     JMenu options;
@@ -44,22 +44,22 @@ public class Menu extends JMenuBar {
          
          eng = new JMenuItem("English");
          eng.setActionCommand("eng");
-         eng.addActionListener(listener);
+         //eng.addActionListener(new Listeners());
          languages.add(eng);
          pol = new JMenuItem("Polski");
          pol.setActionCommand("pol");
-         pol.addActionListener(listener);
+         //pol.addActionListener(new Listeners());
          languages.add(pol);
          chin = new JMenuItem("汉语");
          chin.setActionCommand("chin");
-         chin.addActionListener(listener);
+         //chin.addActionListener(new Listeners());
          languages.add(chin);
          
          options.add(languages);
          
          shiftMode = new JMenuItem("Shift Light/Dark mode");
          shiftMode.setActionCommand("mode");
-         shiftMode.addActionListener(listener);
+         //shiftMode.addActionListener(new Listeners());
          options.add(shiftMode);
          this.add(jmb);
     }
