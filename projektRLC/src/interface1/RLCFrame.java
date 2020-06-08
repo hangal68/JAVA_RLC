@@ -34,6 +34,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -77,7 +78,8 @@ public class RLCFrame extends JFrame implements ActionListener{
     		
     JLabel Rlabel, Clabel, Llabel, Slabel;
     JFormattedTextField RTextField, CTextField, LTextField, STextField;
-    JButton RParallel, RSeries, CParallel, CSeries, LParallel, LSeries, SParallel, SSeries; //parallel - rĂ„â€šÄąâ€šwnolegĂ„Ä…Ă˘â‚¬Ĺˇe; series - szeregowe
+    JButton Radd, Rchange, Cadd, Cchange, Ladd, Lchange, Sadd, Schange; 
+    JButton modeButton;
     
     JLabel circuit; //upper left
     
@@ -169,8 +171,14 @@ public class RLCFrame extends JFrame implements ActionListener{
          circuit.setIcon(new ImageIcon(new ImageIcon("obrazki/circuit.jpg").getImage().getScaledInstance(270, 200, Image.SCALE_DEFAULT)));
          upperLeftPanel.add(circuit, BorderLayout.CENTER);
          
+         modeButton = new JButton("Parallel/Series");
+         modeButton.setPreferredSize(new Dimension(200, 60));
+         modeButton.setActionCommand("parser");
+         modeButton.addActionListener(this);
+         modeButton.setBackground(buttonColorLight);
+         modeButton.setForeground(Color.black);
          
-         
+         upperLeftPanel.add(modeButton, BorderLayout.LINE_END);
          
          upperRightPanel = new JPanel();
          upperRightPanel.setBackground(upperColorLight);
@@ -247,68 +255,68 @@ public class RLCFrame extends JFrame implements ActionListener{
          STextField.setPreferredSize(new Dimension(50, 35));
          
          //guziki
-         RParallel = new JButton("parallel");
-         RParallel.setPreferredSize(new Dimension(115, 35));
-         RParallel.setActionCommand("Rpar");
-         RParallel.addActionListener(this);
-         RParallel.setBackground(buttonColorLight);
-         RParallel.setForeground(Color.black);
+         Radd = new JButton("Add/Remove");
+         Radd.setPreferredSize(new Dimension(115, 35));
+         Radd.setActionCommand("Radd");
+         Radd.addActionListener(this);
+         Radd.setBackground(buttonColorLight);
+         Radd.setForeground(Color.black);
          
          
-         RSeries = new JButton("series");
-         RSeries.setPreferredSize(new Dimension(115, 35));
-         RSeries.setActionCommand("Rser");
-         RSeries.addActionListener(this);
-         RSeries.setBackground(buttonColorLight);
-         RSeries.setForeground(Color.black);
+         Rchange = new JButton("Update value");
+         Rchange.setPreferredSize(new Dimension(115, 35));
+         Rchange.setActionCommand("Rchange");
+         Rchange.addActionListener(this);
+         Rchange.setBackground(buttonColorLight);
+         Rchange.setForeground(Color.black);
          
          
-         CParallel = new JButton("parallel");
-         CParallel.setPreferredSize(new Dimension(115, 35));
-         CParallel.setActionCommand("Cpar");
-         CParallel.addActionListener(this);
-         CParallel.setBackground(buttonColorLight);
-         CParallel.setForeground(Color.black);
+         Cadd = new JButton("Add/Remove");
+         Cadd.setPreferredSize(new Dimension(115, 35));
+         Cadd.setActionCommand("Cadd");
+         Cadd.addActionListener(this);
+         Cadd.setBackground(buttonColorLight);
+         Cadd.setForeground(Color.black);
          
          
-         CSeries = new JButton("series");
-         CSeries.setPreferredSize(new Dimension(115, 35));
-         CSeries.setActionCommand("Cser");
-         CSeries.addActionListener(this);
-         CSeries.setBackground(buttonColorLight);
-         CSeries.setForeground(Color.black);
+         Cchange = new JButton("Update value");
+         Cchange.setPreferredSize(new Dimension(115, 35));
+         Cchange.setActionCommand("Cchange");
+         Cchange.addActionListener(this);
+         Cchange.setBackground(buttonColorLight);
+         Cchange.setForeground(Color.black);
          
          
-         LParallel = new JButton("parallel");
-         LParallel.setPreferredSize(new Dimension(115, 35));
-         LParallel.setActionCommand("Lpar");
-         LParallel.addActionListener(this);
-         LParallel.setBackground(buttonColorLight);
-         LParallel.setForeground(Color.black);
+         Ladd = new JButton("Add/Remove");
+         Ladd.setPreferredSize(new Dimension(115, 35));
+         Ladd.setActionCommand("Ladd");
+         Ladd.addActionListener(this);
+         Ladd.setBackground(buttonColorLight);
+         Ladd.setForeground(Color.black);
          
         
-         LSeries = new JButton("series");
-         LSeries.setPreferredSize(new Dimension(115, 35));
-         LSeries.setActionCommand("Lser");
-         LSeries.addActionListener(this);
-         LSeries.setBackground(buttonColorLight);
-         LSeries.setForeground(Color.black);
+         Lchange = new JButton("Update value");
+         Lchange.setPreferredSize(new Dimension(115, 35));
+         Lchange.setActionCommand("Lchange");
+         Lchange.addActionListener(this);
+         Lchange.setBackground(buttonColorLight);
+         Lchange.setForeground(Color.black);
          
          
-         SParallel  = new JButton("parallel");
-         SParallel.setPreferredSize(new Dimension(115, 35));
-         SParallel.setActionCommand("Spar");
-         SParallel.addActionListener(this);
-         SParallel.setBackground(buttonColorLight);
-         SParallel.setForeground(Color.black);
+         Sadd  = new JButton("Add/Remove");
+         Sadd.setPreferredSize(new Dimension(115, 35));
+         Sadd.setActionCommand("Sadd");
+         Sadd.addActionListener(this);
+         Sadd.setBackground(buttonColorLight);
+         Sadd.setForeground(Color.black);
          
          
-         SSeries = new JButton("series");
-         SSeries.setPreferredSize(new Dimension(115, 35));
-         SSeries.setActionCommand("Sser");
-         SSeries.addActionListener(this);
-         SSeries.setBackground(buttonColorLight);
-         SSeries.setForeground(Color.black);
+         Schange = new JButton("Update value");
+         Schange.setPreferredSize(new Dimension(115, 35));
+         Schange.setActionCommand("Schange");
+         Schange.addActionListener(this);
+         Schange.setBackground(buttonColorLight);
+         Schange.setForeground(Color.black);
          
          
          //opcje wierszami
@@ -316,29 +324,29 @@ public class RLCFrame extends JFrame implements ActionListener{
          //opornik
          UpperR.add(Rlabel);
          UpperR.add(RTextField);
-         UpperR.add(RParallel);
-         UpperR.add(RSeries);
+         UpperR.add(Radd);
+         UpperR.add(Rchange);
          upperRightPanel.add(UpperR);
          
          //kondensator
          UpperC.add(Clabel);
          UpperC.add(CTextField);
-         UpperC.add(CParallel);
-         UpperC.add(CSeries);
+         UpperC.add(Cadd);
+         UpperC.add(Cchange);
          upperRightPanel.add(UpperC);
          
          //cewka
          UpperL.add(Llabel);
          UpperL.add(LTextField);
-         UpperL.add(LParallel);
-         UpperL.add(LSeries);
+         UpperL.add(Ladd);
+         UpperL.add(Lchange);
          upperRightPanel.add(UpperL);
          
          //Ă„Ä…ÄąĹşrĂ„â€šÄąâ€šdĂ„Ä…Ă˘â‚¬Ĺˇo
          UpperS.add(Slabel);
          UpperS.add(STextField);
-         UpperS.add(SParallel);
-         UpperS.add(SSeries);
+         UpperS.add(Sadd);
+         UpperS.add(Schange);
          upperRightPanel.add(UpperS);
          
          //
@@ -491,6 +499,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 					UpperL.setBackground(upperColorDark);
 					UpperS.setBackground(upperColorDark);
 					upperRightPanel.setBackground(upperColorDark);
+					modeButton.setBackground(buttonColorDark);
+					modeButton.setForeground(Color.gray);
 				    rightPanel.setBackground(rightColorDark);
 				    rightLowerPanel.setBackground(rightColorDark);
 				    
@@ -506,25 +516,25 @@ public class RLCFrame extends JFrame implements ActionListener{
 					exitButton.setBackground(buttonColorDark);
 					exitButton.setForeground(Color.gray);
 					
-					RParallel.setBackground(buttonColorDark);
-					RParallel.setForeground(Color.gray);
-					RSeries.setBackground(buttonColorDark);
-					RSeries.setForeground(Color.gray);
+					Radd.setBackground(buttonColorDark);
+					Radd.setForeground(Color.gray);
+					Rchange.setBackground(buttonColorDark);
+					Rchange.setForeground(Color.gray);
 					
-					CParallel.setBackground(buttonColorDark);
-					CParallel.setForeground(Color.gray);
-					CSeries.setBackground(buttonColorDark);
-					CSeries.setForeground(Color.gray);
+					Cadd.setBackground(buttonColorDark);
+					Cadd.setForeground(Color.gray);
+					Cchange.setBackground(buttonColorDark);
+					Cchange.setForeground(Color.gray);
 					
-					LParallel.setBackground(buttonColorDark);
-					LParallel.setForeground(Color.gray);
-					LSeries.setBackground(buttonColorDark);
-					LSeries.setForeground(Color.gray);
+					Ladd.setBackground(buttonColorDark);
+					Ladd.setForeground(Color.gray);
+					Lchange.setBackground(buttonColorDark);
+					Lchange.setForeground(Color.gray);
 					
-					SParallel.setBackground(buttonColorDark);
-					SParallel.setForeground(Color.gray);
-					SSeries.setBackground(buttonColorDark);
-					SSeries.setForeground(Color.gray);
+					Sadd.setBackground(buttonColorDark);
+					Sadd.setForeground(Color.gray);
+					Schange.setBackground(buttonColorDark);
+					Schange.setForeground(Color.gray);
 					
 					
 					beginButton.setIcon(new ImageIcon("obrazki/startDark.png"));
@@ -548,6 +558,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 					UpperC.setBackground(upperColorLight);
 					UpperL.setBackground(upperColorLight);
 					UpperS.setBackground(upperColorLight);
+					modeButton.setBackground(buttonColorLight);
+					modeButton.setForeground(Color.black);
 				    rightPanel.setBackground(rightColorLight);
 				    rightLowerPanel.setBackground(rightColorLight);
 				    
@@ -562,25 +574,25 @@ public class RLCFrame extends JFrame implements ActionListener{
 					exitButton.setBackground(buttonColorLight);
 					exitButton.setForeground(Color.black);
 					
-					RParallel.setBackground(buttonColorLight);
-					RParallel.setForeground(Color.black);
-					RSeries.setBackground(buttonColorLight);
-					RSeries.setForeground(Color.black);
+					Radd.setBackground(buttonColorLight);
+					Radd.setForeground(Color.black);
+					Rchange.setBackground(buttonColorLight);
+					Rchange.setForeground(Color.black);
 					
-					CParallel.setBackground(buttonColorLight);
-					CParallel.setForeground(Color.black);
-					CSeries.setBackground(buttonColorLight);
-					CSeries.setForeground(Color.black);
+					Cadd.setBackground(buttonColorLight);
+					Cadd.setForeground(Color.black);
+					Cchange.setBackground(buttonColorLight);
+					Cchange.setForeground(Color.black);
 					
-					LParallel.setBackground(buttonColorLight);
-					LParallel.setForeground(Color.black);
-					LSeries.setBackground(buttonColorLight);
-					LSeries.setForeground(Color.black);
+					Ladd.setBackground(buttonColorLight);
+					Ladd.setForeground(Color.black);
+					Lchange.setBackground(buttonColorLight);
+					Lchange.setForeground(Color.black);
 					
-					SParallel.setBackground(buttonColorLight);
-					SParallel.setForeground(Color.black);
-					SSeries.setBackground(buttonColorLight);
-					SSeries.setForeground(Color.black);
+					Sadd.setBackground(buttonColorLight);
+					Sadd.setForeground(Color.black);
+					Schange.setBackground(buttonColorLight);
+					Schange.setForeground(Color.black);
 					
 					beginButton.setIcon(new ImageIcon("obrazki/startLight.png"));
 					
@@ -595,14 +607,14 @@ public class RLCFrame extends JFrame implements ActionListener{
 				}
 				break;
 			case "eng":
-				RParallel.setText("parallel");
-				RSeries.setText("series");
-				LParallel.setText("parallel");
-				LSeries.setText("series");
-				CParallel.setText("parallel");
-				CSeries.setText("series");
-				SParallel.setText("parallel");
-				SSeries.setText("series");
+				Radd.setText("parallel");
+				Rchange.setText("series");
+				Ladd.setText("parallel");
+				Lchange.setText("series");
+				Cadd.setText("parallel");
+				Cchange.setText("series");
+				Sadd.setText("parallel");
+				Schange.setText("series");
 				
 				openButton.setText("Open");
 				saveGraphButton.setText("Save graph");
@@ -614,14 +626,14 @@ public class RLCFrame extends JFrame implements ActionListener{
 				shiftMode.setText("Shift Light/Dark mode");
 				break;
 			case "pol":
-				RParallel.setText("rÄ‚Ĺ‚wnolegle");
-				RSeries.setText("szeregowo");
-				LParallel.setText("rÄ‚Ĺ‚wnolegle");
-				LSeries.setText("szeregowo");
-				CParallel.setText("rÄ‚Ĺ‚wnolegle");
-				CSeries.setText("szeregowo");
-				SParallel.setText("rÄ‚Ĺ‚wnolegle");
-				SSeries.setText("szeregowo");
+				Radd.setText("rÄ‚Ĺ‚wnolegle");
+				Rchange.setText("szeregowo");
+				Ladd.setText("rÄ‚Ĺ‚wnolegle");
+				Lchange.setText("szeregowo");
+				Cadd.setText("rÄ‚Ĺ‚wnolegle");
+				Cchange.setText("szeregowo");
+				Sadd.setText("rÄ‚Ĺ‚wnolegle");
+				Schange.setText("szeregowo");
 				
 				openButton.setText("OtwÄ‚Ĺ‚rz");
 				saveGraphButton.setText("Zapisz wykres");
@@ -634,14 +646,14 @@ public class RLCFrame extends JFrame implements ActionListener{
 				
 				break;
 			case "chin":
-				RParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				RSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				LParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				LSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				CParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				CSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				SParallel.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				SSeries.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				Radd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				Rchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				Ladd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				Lchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				Cadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				Cchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				Sadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
+				Schange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
 				
 				openButton.setText("ÄşÄ˝â‚¬");
 				saveGraphButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝Äşâ€şÄľÄ‡ â€ˇ");
@@ -653,35 +665,35 @@ public class RLCFrame extends JFrame implements ActionListener{
 				shiftMode.setText("Ă§â„˘Ëť/Ă©Â»â€�ÄŤĹĽďż˝ÄŤË‡ĹšÄ‡â€“Ä…ÄşÄ˝Ĺą");
 				
 				break;
-			case "Rpar":
+			case "Radd":
 				
 				break;
 				
-			case "Rser":
+			case "Rchange":
 				R = Double.parseDouble(RTextField.getText());
 				break;
 				
-			case "Cpar":
+			case "Cadd":
 				
 				break;
 				
-			case "Cser":
+			case "Cchange":
 				C = Double.parseDouble(CTextField.getText());
 				break;
 				
-			case "Lpar":
+			case "Ladd":
 				
 				break;
 				
-			case "Lser":
+			case "Lchange":
 				L = Double.parseDouble(LTextField.getText());
 				break;
 				
-			case "Spar":
+			case "Sadd":
 				
 				break;
 				
-			case "Sser":
+			case "Schange":
 				S = Double.parseDouble(STextField.getText());
 				break;
 		}
@@ -690,9 +702,14 @@ public class RLCFrame extends JFrame implements ActionListener{
 
 	
 	public static void main(String[] args) {
-		
-		RLCFrame frame = new RLCFrame();
-        frame.setVisible(true);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	RLCFrame frame = new RLCFrame();
+                frame.setVisible(true);
+
+	}
+		});
 	}
 
 
