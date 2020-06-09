@@ -70,15 +70,17 @@ public class RLCFrame extends JFrame implements ActionListener{
     int max = 80000;
     int init = 70710;
     double freq = 70710;
+    
     double R = 42;
     double L = 0.02;
     double C = 0.00000001;
     double S = 5;
-    
+    Boolean isR = true, isL = true, isC = true;
+    Boolean isSer = true;
     		
     JLabel Rlabel, Clabel, Llabel, Slabel;
     JFormattedTextField RTextField, CTextField, LTextField, STextField;
-    JButton Radd, Rchange, Cadd, Cchange, Ladd, Lchange, Sadd, Schange; 
+    JButton Radd, Rchange, Cadd, Cchange, Ladd, Lchange, Schange; 
     JButton modeButton;
     
     JLabel circuit; //upper left
@@ -303,12 +305,10 @@ public class RLCFrame extends JFrame implements ActionListener{
          Lchange.setForeground(Color.black);
          
          
-         Sadd  = new JButton("Add/Remove");
-         Sadd.setPreferredSize(new Dimension(115, 35));
-         Sadd.setActionCommand("Sadd");
-         Sadd.addActionListener(this);
-         Sadd.setBackground(buttonColorLight);
-         Sadd.setForeground(Color.black);
+         JLabel fillLabel  = new JLabel("");
+         fillLabel.setPreferredSize(new Dimension(115, 35));
+         fillLabel.setBackground(buttonColorLight);
+         fillLabel.setForeground(Color.black);
          
          
          Schange = new JButton("Update value");
@@ -345,7 +345,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          //Ă„Ä…ÄąĹşrĂ„â€šÄąâ€šdĂ„Ä…Ă˘â‚¬Ĺˇo
          UpperS.add(Slabel);
          UpperS.add(STextField);
-         UpperS.add(Sadd);
+         UpperS.add(fillLabel);
          UpperS.add(Schange);
          upperRightPanel.add(UpperS);
          
@@ -531,8 +531,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 					Lchange.setBackground(buttonColorDark);
 					Lchange.setForeground(Color.gray);
 					
-					Sadd.setBackground(buttonColorDark);
-					Sadd.setForeground(Color.gray);
 					Schange.setBackground(buttonColorDark);
 					Schange.setForeground(Color.gray);
 					
@@ -589,8 +587,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 					Lchange.setBackground(buttonColorLight);
 					Lchange.setForeground(Color.black);
 					
-					Sadd.setBackground(buttonColorLight);
-					Sadd.setForeground(Color.black);
 					Schange.setBackground(buttonColorLight);
 					Schange.setForeground(Color.black);
 					
@@ -613,7 +609,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 				Lchange.setText("series");
 				Cadd.setText("parallel");
 				Cchange.setText("series");
-				Sadd.setText("parallel");
 				Schange.setText("series");
 				
 				openButton.setText("Open");
@@ -632,7 +627,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 				Lchange.setText("szeregowo");
 				Cadd.setText("rÄ‚Ĺ‚wnolegle");
 				Cchange.setText("szeregowo");
-				Sadd.setText("rÄ‚Ĺ‚wnolegle");
 				Schange.setText("szeregowo");
 				
 				openButton.setText("OtwÄ‚Ĺ‚rz");
@@ -652,7 +646,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 				Lchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
 				Cadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
 				Cchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Sadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
 				Schange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
 				
 				openButton.setText("ÄşÄ˝â‚¬");
@@ -666,7 +659,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 				
 				break;
 			case "Radd":
-				
+				if (isR == false) isR = true;
+				else if (isR == true) isR = false;
 				break;
 				
 			case "Rchange":
@@ -674,7 +668,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 				break;
 				
 			case "Cadd":
-				
+				if (isC == false) isC = true;
+				else if (isC == true) isC = false;				
 				break;
 				
 			case "Cchange":
@@ -682,20 +677,24 @@ public class RLCFrame extends JFrame implements ActionListener{
 				break;
 				
 			case "Ladd":
-				
+				if (isL == false) isL = true;
+				else if (isL == true) isL = false;				
 				break;
 				
 			case "Lchange":
 				L = Double.parseDouble(LTextField.getText());
 				break;
-				
-			case "Sadd":
-				
-				break;
-				
+			
 			case "Schange":
 				S = Double.parseDouble(STextField.getText());
 				break;
+				
+			case "parser":
+				if (isSer == false) isSer = true;
+				else if (isSer == true) isSer = false;
+				System.out.println(isSer);
+				break;
+				
 		}
 		
 	}
