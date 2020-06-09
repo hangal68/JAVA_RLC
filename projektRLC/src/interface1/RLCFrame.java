@@ -415,7 +415,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          rightLowerPanel.setBounds(this.getWidth() * 78/100, this.getHeight() * 70/100, this.getWidth() * 22/100, this.getHeight() * 30/100);
          rightLowerPanel.setBackground(rightColorLight);
          rightLowerPanel.setLayout(new FlowLayout());
-         //
+         ////
          beginButton = new JButton(new ImageIcon("obrazki/startLight.png"));
          beginButton.setBounds(0, 0, 160, 140);
          beginButton.setPreferredSize(new Dimension(160, 140));
