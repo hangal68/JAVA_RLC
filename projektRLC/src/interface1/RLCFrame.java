@@ -149,7 +149,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          pol.setActionCommand("pol");
          pol.addActionListener(this);
          languages.add(pol);
-         chin = new JMenuItem("Ä‡Â±â€°ÄŤĹ»Â­");
+         chin = new JMenuItem("汉语­");
          chin.setActionCommand("chin");
          chin.addActionListener(this);
          languages.add(chin);
@@ -256,7 +256,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          //guziki
          Radd = new JButton("Add/Remove");
-         Radd.setPreferredSize(new Dimension(115, 35));
+         Radd.setPreferredSize(new Dimension(130, 35));
          Radd.setActionCommand("Radd");
          Radd.addActionListener(this);
          Radd.setBackground(buttonColorLight);
@@ -264,7 +264,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Rchange = new JButton("Update value");
-         Rchange.setPreferredSize(new Dimension(115, 35));
+         Rchange.setPreferredSize(new Dimension(130, 35));
          Rchange.setActionCommand("Rchange");
          Rchange.addActionListener(this);
          Rchange.setBackground(buttonColorLight);
@@ -272,7 +272,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Cadd = new JButton("Add/Remove");
-         Cadd.setPreferredSize(new Dimension(115, 35));
+         Cadd.setPreferredSize(new Dimension(130, 35));
          Cadd.setActionCommand("Cadd");
          Cadd.addActionListener(this);
          Cadd.setBackground(buttonColorLight);
@@ -280,7 +280,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Cchange = new JButton("Update value");
-         Cchange.setPreferredSize(new Dimension(115, 35));
+         Cchange.setPreferredSize(new Dimension(130, 35));
          Cchange.setActionCommand("Cchange");
          Cchange.addActionListener(this);
          Cchange.setBackground(buttonColorLight);
@@ -288,7 +288,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Ladd = new JButton("Add/Remove");
-         Ladd.setPreferredSize(new Dimension(115, 35));
+         Ladd.setPreferredSize(new Dimension(130, 35));
          Ladd.setActionCommand("Ladd");
          Ladd.addActionListener(this);
          Ladd.setBackground(buttonColorLight);
@@ -296,7 +296,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
         
          Lchange = new JButton("Update value");
-         Lchange.setPreferredSize(new Dimension(115, 35));
+         Lchange.setPreferredSize(new Dimension(130, 35));
          Lchange.setActionCommand("Lchange");
          Lchange.addActionListener(this);
          Lchange.setBackground(buttonColorLight);
@@ -304,7 +304,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Sadd  = new JButton("Add/Remove");
-         Sadd.setPreferredSize(new Dimension(115, 35));
+         Sadd.setPreferredSize(new Dimension(130, 35));
          Sadd.setActionCommand("Sadd");
          Sadd.addActionListener(this);
          Sadd.setBackground(buttonColorLight);
@@ -312,7 +312,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Schange = new JButton("Update value");
-         Schange.setPreferredSize(new Dimension(115, 35));
+         Schange.setPreferredSize(new Dimension(130, 35));
          Schange.setActionCommand("Schange");
          Schange.addActionListener(this);
          Schange.setBackground(buttonColorLight);
@@ -342,7 +342,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          UpperL.add(Lchange);
          upperRightPanel.add(UpperL);
          
-         //Ă„Ä…ÄąĹşrĂ„â€šÄąâ€šdĂ„Ä…Ă˘â‚¬Ĺˇo
+         //zrodlo
          UpperS.add(Slabel);
          UpperS.add(STextField);
          UpperS.add(Sadd);
@@ -607,15 +607,15 @@ public class RLCFrame extends JFrame implements ActionListener{
 				}
 				break;
 			case "eng":
-				Radd.setText("parallel");
-				Rchange.setText("series");
-				Ladd.setText("parallel");
-				Lchange.setText("series");
-				Cadd.setText("parallel");
-				Cchange.setText("series");
-				Sadd.setText("parallel");
-				Schange.setText("series");
-				
+				Radd.setText("Add/Remove");
+				Rchange.setText("Update value");
+				Ladd.setText("Add/Remove");
+				Lchange.setText("Update value");
+				Cadd.setText("Add/Remove");
+				Cchange.setText("Update value");
+				Sadd.setText("Add/Remove");
+				Schange.setText("Update value");
+				modeButton.setText("parallel/series");
 				openButton.setText("Open");
 				saveGraphButton.setText("Save graph");
 				saveParametersButton.setText("Save parameters");
@@ -626,43 +626,44 @@ public class RLCFrame extends JFrame implements ActionListener{
 				shiftMode.setText("Shift Light/Dark mode");
 				break;
 			case "pol":
-				Radd.setText("rÄ‚Ĺ‚wnolegle");
-				Rchange.setText("szeregowo");
-				Ladd.setText("rÄ‚Ĺ‚wnolegle");
-				Lchange.setText("szeregowo");
-				Cadd.setText("rÄ‚Ĺ‚wnolegle");
-				Cchange.setText("szeregowo");
-				Sadd.setText("rÄ‚Ĺ‚wnolegle");
-				Schange.setText("szeregowo");
+				Radd.setText("Dodaj/Usuń");
+				Rchange.setText("Dodaj wartość");
+				Ladd.setText("Dodaj/Usuń");
+				Lchange.setText("Dodaj wartość");
+				Cadd.setText("Dodaj/Usuń");
+				Cchange.setText("Dodaj wartość");
+				Sadd.setText("Dodaj/Usuń");
+				Schange.setText("Dodaj wartość");
+				modeButton.setText("równolegle/szeregowo");
 				
-				openButton.setText("OtwÄ‚Ĺ‚rz");
+				openButton.setText("Otwórz");
 				saveGraphButton.setText("Zapisz wykres");
 				saveParametersButton.setText("Zapisz parametry");
-				exitButton.setText("WyjÄąâ€şcie");
+				exitButton.setText("Wyjście");
 				
 				options.setText("Opcje");
-				languages.setText("ZmieÄąâ€ž jĂ„â„˘zyk");
+				languages.setText("Zmień język");
 				shiftMode.setText("Tryb jasny/ciemny");
 				
 				break;
 			case "chin":
-				Radd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Rchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Ladd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Lchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Cadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Cchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Sadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Schange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				Radd.setText("加/除"); //jia3 chu2
+				Rchange.setText("更新值"); //gengxin zhi
+				Ladd.setText("加/除");
+				Lchange.setText("更新值");
+				Cadd.setText("加/除");
+				Cchange.setText("更新值");
+				Sadd.setText("加/除");
+				Schange.setText("更新值");
+				modeButton.setText("并联/串联");
+				openButton.setText("开");
+				saveGraphButton.setText("保存图标");
+				saveParametersButton.setText("保存参数");
+				exitButton.setText("退出");
 				
-				openButton.setText("ÄşÄ˝â‚¬");
-				saveGraphButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝Äşâ€şÄľÄ‡ â€ˇ");
-				saveParametersButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝ÄşĹąâ€šÄ‡â€˘Â°");
-				exitButton.setText("Ă©â‚¬â‚¬Äşâ€ˇĹź");
-				
-				options.setText("Ä‡Ĺ›ĹşÄ‡ĹĄďż˝");
-				languages.setText("ÄŤËťÂ¬Ä‡Ĺ¤Ë�ÄŤĹ»Â­ÄŤÂ¨â‚¬");
-				shiftMode.setText("Ă§â„˘Ëť/Ă©Â»â€�ÄŤĹĽďż˝ÄŤË‡ĹšÄ‡â€“Ä…ÄşÄ˝Ĺą");
+				options.setText("期权");
+				languages.setText("语言");
+				shiftMode.setText("白/黑  运行方式");
 				
 				break;
 			case "Radd":
