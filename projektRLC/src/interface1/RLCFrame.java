@@ -63,7 +63,7 @@ public class RLCFrame extends JFrame implements ActionListener{
     
     //操你妈
     //upper right
-    JPanel UpperR, UpperC, UpperL, UpperS, UpperSlider;
+    JPanel UpperR, UpperC, UpperL, UpperS, UpperSlider;	
     JSlider slider;
     JLabel sliderLabel;
     JFormattedTextField SliderTextField;
@@ -457,29 +457,89 @@ public class RLCFrame extends JFrame implements ActionListener{
 		switch (action) {
 			case "begin":
 
-				if (isR == true && isL == false && isC == true && isSer == true) {
-					simulationPanel.simulate(S, R, L, C, freq, "RCser");
+		        if (isR == true && isL == true && isC == true && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "RLCser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
 		        if (isR == false && isL == true && isC == true && isSer == true) {
 					simulationPanel.simulate(S, 0, L, C, freq, "RLCser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
-		        if (isR == true && isL == true && isC == true && isSer == true) {
-					simulationPanel.simulate(S, R, L, C, freq, "RLCser");
+		        if (isR == true && isL == false && isC == true && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "RCser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        if (isR == false && isL == false && isC == true && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "Cser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        
+		        if (isR == true && isL == true && isC == false && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "RLser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        if (isR == false && isL == true && isC == false && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "Lser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
 		        if (isR == true && isL == false && isC == false && isSer == true) {
 					simulationPanel.simulate(S, R, L, C, freq, "Rser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        if (isR == false && isL == false && isC == false && isSer == true) {
+					simulationPanel.simulate(S, 0, L, C, freq, "Rser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+
+		        
+		        if (isR == true && isL == true && isC == true && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "RLCpar");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
 		        if (isR == false && isL == true && isC == true && isSer == false) {
 					simulationPanel.simulate(S, 0, L, C, freq, "LCpar");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
 		        if (isR == true && isL == false && isC == true && isSer == false) {
 					simulationPanel.simulate(S, R, L, C, freq, "RCpar");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
+		        if (isR == false && isL == false && isC == true && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "Cser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        
 		        if (isR == true && isL == true && isC == false && isSer == false) {
 					simulationPanel.simulate(S, R, L, C, freq, "RLpar");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
-		        if (isR == true && isL == true && isC == true && isSer == false) {
-					simulationPanel.simulate(S, R, L, C, freq, "RLCpar");
+		        if (isR == false && isL == true && isC == false && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "Lser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        if (isR == true && isL == false && isC == false && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "Rser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
+		        }
+		        if (isR == false && isL == false && isC == false && isSer == false) {
+					simulationPanel.simulate(S, 0, L, C, freq, "Rser");
+					simulationPanel.addingSeries("series");
+					simulationPanel.createDataSet(null);
 		        }
 		        
 				break;
@@ -733,6 +793,7 @@ public class RLCFrame extends JFrame implements ActionListener{
 			case "Radd":
 				if (isR == false) isR = true;
 				else if (isR == true) isR = false;
+				
 				break;
 				
 			case "Rchange":
@@ -778,7 +839,7 @@ public class RLCFrame extends JFrame implements ActionListener{
             	RLCFrame frame = new RLCFrame();
                 frame.setVisible(true);
 
-	}
+            }
 		});
 	}
 

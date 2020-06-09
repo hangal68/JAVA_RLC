@@ -19,7 +19,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class SimulationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	int N = 40000;
+	int N = 4000;
 	double dt = 0.000000005;
 	double t0 = 0;
 	double i0 = 0;
@@ -117,6 +117,45 @@ public class SimulationPanel extends JPanel {
 		Uwe.add(0.0);
 		
 		switch (mode) {
+			
+			case "Lser":
+				i.clear();
+				di.clear();
+				Ur.clear();
+				Ul.clear();
+				Uc.clear();
+				
+			    i.add(i0);
+			    di.add(U0 * L);
+			    Ul.add(0.0);
+				
+			    for (int j = 0; j < N; j++) {
+			    	t.add(t.get(j) + dt);
+			    	Uwe.add(U0 * Math.sin(w * t.get(j)));
+			    	i.add(i.get(j) + di.get(j) * dt);
+			    	di.add(di.get(j) + (U0 / L * w * Math.cos(w * t.get(j)) ) * dt);
+			    	Ul.add(Uwe.get(j));
+			    }				
+				break;
+				
+			case "Cser":
+				i.clear();
+				di.clear();
+				Ur.clear();
+				Ul.clear();
+				Uc.clear();
+				
+			    i.add(i0);
+			    Uc.add(0.0);
+				
+			    for (int j = 0; j < N; j++) {
+			    	t.add(t.get(j) + dt);
+			    	Uwe.add(U0 * Math.sin(w * t.get(j)));
+			    	i.add(U0 * C * w * Math.cos(w * t.get(j)));
+			    	Uc.add(Uwe.get(j));
+			    }			
+				break;
+				
 			case "Rser":
 				i.clear();
 				di.clear();
@@ -166,7 +205,7 @@ public class SimulationPanel extends JPanel {
 				
 			    i.add(i0);
 			    Ur.add(R * i0);
-			    Uc.add(Uwe.get(0) - Ul.get(0) - Ur.get(0));
+			    Uc.add(Uwe.get(0) - Ur.get(0));
 			    
 			    for (int j = 0; j < N; j++) {
 			    	t.add(t.get(j) + dt);
@@ -304,7 +343,6 @@ public class SimulationPanel extends JPanel {
 					Rseries.add(t.get(i), Ur.get(i));
 					Lseries.add(t.get(i), Ul.get(i));
 					Cseries.add(t.get(i), Uc.get(i));
-					//System.out.println("sda");
 				}
 				break;
 			case "parallel":
