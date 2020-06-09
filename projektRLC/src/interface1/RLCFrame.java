@@ -249,7 +249,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          CTextField = new JFormattedTextField("0.00000001");
          CTextField.setPreferredSize(new Dimension(50, 35));
-         
+         //
          LTextField = new JFormattedTextField("0.02");
          LTextField.setPreferredSize(new Dimension(50, 35));
          
