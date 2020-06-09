@@ -151,7 +151,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          pol.setActionCommand("pol");
          pol.addActionListener(this);
          languages.add(pol);
-         chin = new JMenuItem("Ä‡Â±â€°ÄŤĹ»Â­");
+         chin = new JMenuItem("汉语");
          chin.setActionCommand("chin");
          chin.addActionListener(this);
          languages.add(chin);
@@ -368,7 +368,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          openButton.setForeground(Color.black);
          openButton.setBorder(new LineBorder(Color.black));
          
-         openButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
+         //openButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          //openButton.setBorder(BorderFactory.createLineBorder(Color.blue));
          openButton.setActionCommand("open");
          openButton.addActionListener(this);
@@ -381,7 +381,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          saveGraphButton.setForeground(Color.black);
          saveGraphButton.setBorder(new LineBorder(Color.black));
          
-         saveGraphButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
+         //saveGraphButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          saveGraphButton.setActionCommand("saveGraph");
          saveGraphButton.addActionListener(this);
          
@@ -392,7 +392,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          saveParametersButton.setBackground(buttonColorLight);
          saveParametersButton.setForeground(Color.black);
          saveParametersButton.setBorder(new LineBorder(Color.black));
-         saveParametersButton.setFont(new java.awt.Font("Arial", Font.BOLD, 15));
+         //saveParametersButton.setFont(new java.awt.Font("Arial", Font.BOLD, 15));
          saveParametersButton.setActionCommand("saveParam");
          saveParametersButton.addActionListener(this);
          
@@ -403,7 +403,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          exitButton.setBackground(buttonColorLight);
          exitButton.setForeground(Color.black);
          exitButton.setBorder(new LineBorder(Color.black));
-         exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
+         //exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 16));
          exitButton.setActionCommand("exit");
          exitButton.addActionListener(this);
          
@@ -603,14 +603,14 @@ public class RLCFrame extends JFrame implements ActionListener{
 				}
 				break;
 			case "eng":
-				Radd.setText("parallel");
-				Rchange.setText("series");
-				Ladd.setText("parallel");
-				Lchange.setText("series");
-				Cadd.setText("parallel");
-				Cchange.setText("series");
-				Schange.setText("series");
-				
+				Radd.setText("Add/Remove");
+				Rchange.setText("Update value");
+				Ladd.setText("Add/Remove");
+				Lchange.setText("Update value");
+				Cadd.setText("Add/Remove");
+				Cchange.setText("Update value");
+				Schange.setText("Update value");
+				modeButton.setText("parallel/series");
 				openButton.setText("Open");
 				saveGraphButton.setText("Save graph");
 				saveParametersButton.setText("Save parameters");
@@ -621,41 +621,42 @@ public class RLCFrame extends JFrame implements ActionListener{
 				shiftMode.setText("Shift Light/Dark mode");
 				break;
 			case "pol":
-				Radd.setText("rÄ‚Ĺ‚wnolegle");
-				Rchange.setText("szeregowo");
-				Ladd.setText("rÄ‚Ĺ‚wnolegle");
-				Lchange.setText("szeregowo");
-				Cadd.setText("rÄ‚Ĺ‚wnolegle");
-				Cchange.setText("szeregowo");
-				Schange.setText("szeregowo");
+				Radd.setText("Dodaj/Usuń");
+				Rchange.setText("Dodaj wartość");
+				Ladd.setText("Dodaj/Usuń");
+				Lchange.setText("Dodaj wartość");
+				Cadd.setText("Dodaj/Usuń");
+				Cchange.setText("Dodaj wartość");
+				Schange.setText("Dodaj wartość");
+				modeButton.setText("równolegle/szeregowo");
 				
-				openButton.setText("OtwÄ‚Ĺ‚rz");
+				openButton.setText("Otwórz");
 				saveGraphButton.setText("Zapisz wykres");
 				saveParametersButton.setText("Zapisz parametry");
-				exitButton.setText("WyjÄąâ€şcie");
+				exitButton.setText("Wyjście");
 				
 				options.setText("Opcje");
-				languages.setText("ZmieÄąâ€ž jĂ„â„˘zyk");
+				languages.setText("Zmień język");
 				shiftMode.setText("Tryb jasny/ciemny");
 				
 				break;
 			case "chin":
-				Radd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Rchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Ladd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Lchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Cadd.setText("ÄşÄ…Â¶ÄŤďż˝â€ť");
-				Cchange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
-				Schange.setText("Ă¤Â¸Ë›ÄŤďż˝â€ť");
+				Radd.setText("加/除"); //jia3 chu2
+				Rchange.setText("更新值"); //gengxin zhi
+				Ladd.setText("加/除");
+				Lchange.setText("更新值");
+				Cadd.setText("加/除");
+				Cchange.setText("更新值");
+				Schange.setText("更新值");
+				modeButton.setText("并联/串联");
+				openButton.setText("开");
+				saveGraphButton.setText("保存图标");
+				saveParametersButton.setText("保存参数");
+				exitButton.setText("退出");
 				
-				openButton.setText("ÄşÄ˝â‚¬");
-				saveGraphButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝Äşâ€şÄľÄ‡ â€ˇ");
-				saveParametersButton.setText("Ă¤ĹĽĹĄÄşÂ­ďż˝ÄşĹąâ€šÄ‡â€˘Â°");
-				exitButton.setText("Ă©â‚¬â‚¬Äşâ€ˇĹź");
-				
-				options.setText("Ä‡Ĺ›ĹşÄ‡ĹĄďż˝");
-				languages.setText("ÄŤËťÂ¬Ä‡Ĺ¤Ë�ÄŤĹ»Â­ÄŤÂ¨â‚¬");
-				shiftMode.setText("Ă§â„˘Ëť/Ă©Â»â€�ÄŤĹĽďż˝ÄŤË‡ĹšÄ‡â€“Ä…ÄşÄ˝Ĺą");
+				options.setText("期权");
+				languages.setText("语言");
+				shiftMode.setText("白/黑  运行方式");
 				
 				break;
 			case "Radd":
