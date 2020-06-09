@@ -17,6 +17,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import javax.imageio.ImageIO;
 import javax.print.DocFlavor.URL;
@@ -151,7 +152,11 @@ public class RLCFrame extends JFrame implements ActionListener{
          pol.setActionCommand("pol");
          pol.addActionListener(this);
          languages.add(pol);
+
          chin = new JMenuItem("汉语");
+
+         chin = new JMenuItem("汉语­");
+
          chin.setActionCommand("chin");
          chin.addActionListener(this);
          languages.add(chin);
@@ -174,7 +179,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          upperLeftPanel.add(circuit, BorderLayout.CENTER);
          
          modeButton = new JButton("Parallel/Series");
-         modeButton.setPreferredSize(new Dimension(200, 60));
+         modeButton.setPreferredSize(new Dimension(170, 50));
          modeButton.setActionCommand("parser");
          modeButton.addActionListener(this);
          modeButton.setBackground(buttonColorLight);
@@ -258,7 +263,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          //guziki
          Radd = new JButton("Add/Remove");
-         Radd.setPreferredSize(new Dimension(115, 35));
+         Radd.setPreferredSize(new Dimension(130, 35));
          Radd.setActionCommand("Radd");
          Radd.addActionListener(this);
          Radd.setBackground(buttonColorLight);
@@ -266,7 +271,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Rchange = new JButton("Update value");
-         Rchange.setPreferredSize(new Dimension(115, 35));
+         Rchange.setPreferredSize(new Dimension(130, 35));
          Rchange.setActionCommand("Rchange");
          Rchange.addActionListener(this);
          Rchange.setBackground(buttonColorLight);
@@ -274,7 +279,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Cadd = new JButton("Add/Remove");
-         Cadd.setPreferredSize(new Dimension(115, 35));
+         Cadd.setPreferredSize(new Dimension(130, 35));
          Cadd.setActionCommand("Cadd");
          Cadd.addActionListener(this);
          Cadd.setBackground(buttonColorLight);
@@ -282,7 +287,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Cchange = new JButton("Update value");
-         Cchange.setPreferredSize(new Dimension(115, 35));
+         Cchange.setPreferredSize(new Dimension(130, 35));
          Cchange.setActionCommand("Cchange");
          Cchange.addActionListener(this);
          Cchange.setBackground(buttonColorLight);
@@ -290,7 +295,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          
          
          Ladd = new JButton("Add/Remove");
-         Ladd.setPreferredSize(new Dimension(115, 35));
+         Ladd.setPreferredSize(new Dimension(130, 35));
          Ladd.setActionCommand("Ladd");
          Ladd.addActionListener(this);
          Ladd.setBackground(buttonColorLight);
@@ -298,21 +303,25 @@ public class RLCFrame extends JFrame implements ActionListener{
          
         
          Lchange = new JButton("Update value");
-         Lchange.setPreferredSize(new Dimension(115, 35));
+         Lchange.setPreferredSize(new Dimension(130, 35));
          Lchange.setActionCommand("Lchange");
          Lchange.addActionListener(this);
          Lchange.setBackground(buttonColorLight);
          Lchange.setForeground(Color.black);
          
          
+
          JLabel fillLabel  = new JLabel("");
-         fillLabel.setPreferredSize(new Dimension(115, 35));
+         fillLabel.setPreferredSize(new Dimension(130, 35));
          fillLabel.setBackground(buttonColorLight);
          fillLabel.setForeground(Color.black);
+
+
+
          
          
          Schange = new JButton("Update value");
-         Schange.setPreferredSize(new Dimension(115, 35));
+         Schange.setPreferredSize(new Dimension(130, 35));
          Schange.setActionCommand("Schange");
          Schange.addActionListener(this);
          Schange.setBackground(buttonColorLight);
@@ -342,7 +351,7 @@ public class RLCFrame extends JFrame implements ActionListener{
          UpperL.add(Lchange);
          upperRightPanel.add(UpperL);
          
-         //Ă„Ä…ÄąĹşrĂ„â€šÄąâ€šdĂ„Ä…Ă˘â‚¬Ĺˇo
+         //zrodlo
          UpperS.add(Slabel);
          UpperS.add(STextField);
          UpperS.add(fillLabel);
@@ -447,9 +456,31 @@ public class RLCFrame extends JFrame implements ActionListener{
 
 		switch (action) {
 			case "begin":
-				simulationPanel.simulate(S, R, L, C, freq, "RLCser");
-		        simulationPanel.addingSeries("series");
-		        simulationPanel.createDataSet("nic");
+
+				if (isR == true && isL == false && isC == true && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "RCser");
+		        }
+		        if (isR == false && isL == true && isC == true && isSer == true) {
+					simulationPanel.simulate(S, 0, L, C, freq, "RLCser");
+		        }
+		        if (isR == true && isL == true && isC == true && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "RLCser");
+		        }
+		        if (isR == true && isL == false && isC == false && isSer == true) {
+					simulationPanel.simulate(S, R, L, C, freq, "Rser");
+		        }
+		        if (isR == false && isL == true && isC == true && isSer == false) {
+					simulationPanel.simulate(S, 0, L, C, freq, "LCpar");
+		        }
+		        if (isR == true && isL == false && isC == true && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "RCpar");
+		        }
+		        if (isR == true && isL == true && isC == false && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "RLpar");
+		        }
+		        if (isR == true && isL == true && isC == true && isSer == false) {
+					simulationPanel.simulate(S, R, L, C, freq, "RLCpar");
+		        }
 		        
 				break;
 			case "open":
@@ -484,6 +515,38 @@ public class RLCFrame extends JFrame implements ActionListener{
                 } catch (IOException ee) {
                     System.out.println(ee.getMessage());
                 }
+				break;
+				
+			case "saveParam":
+				File outputFile = null;
+				JFileChooser chooserPar = new JFileChooser("Save parameters");
+				FileNameExtensionFilter filterP = new FileNameExtensionFilter("txt files", "txt");
+	            chooserPar.setFileFilter(filterP);
+				int returnVal = chooserPar.showOpenDialog(null);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	outputFile = chooserPar.getSelectedFile();
+			    }
+				
+				try {
+					PrintStream fileStream = new PrintStream(outputFile);
+					fileStream.println("Parameters saved from your RLC circuit.");
+					//może data?
+					fileStream.println("Type of circuit: " + "");
+					fileStream.println("Parameter	U0(V)	R(Ω)	L(H)	C(F)	freq(Hz)");
+					fileStream.println("Value		"+S+"	"+R+"	"+L+"	"+C+"	"+freq);
+					fileStream.println("U0 - amplitude value of source sinusoidal signal");
+					fileStream.println("R - resistance value of resistor");
+					fileStream.println("L - inductance value of coil");
+					fileStream.println("C - capacity value of capacitor");
+					fileStream.println("freq - sinusoidal signal frequency");
+					
+					
+					fileStream.close();
+					System.out.println("Successfully wrote to the file.");
+				} catch (IOException e) {
+					System.out.println("An error occurred.");
+					e.printStackTrace();
+				    }
 				break;
 			case "exit":
 				exitFrame = new JFrame("Exit");
@@ -609,6 +672,8 @@ public class RLCFrame extends JFrame implements ActionListener{
 				Lchange.setText("Update value");
 				Cadd.setText("Add/Remove");
 				Cchange.setText("Update value");
+
+
 				Schange.setText("Update value");
 				modeButton.setText("parallel/series");
 				openButton.setText("Open");
@@ -627,6 +692,9 @@ public class RLCFrame extends JFrame implements ActionListener{
 				Lchange.setText("Dodaj wartość");
 				Cadd.setText("Dodaj/Usuń");
 				Cchange.setText("Dodaj wartość");
+
+
+
 				Schange.setText("Dodaj wartość");
 				modeButton.setText("równolegle/szeregowo");
 				
@@ -647,6 +715,9 @@ public class RLCFrame extends JFrame implements ActionListener{
 				Lchange.setText("更新值");
 				Cadd.setText("加/除");
 				Cchange.setText("更新值");
+
+
+
 				Schange.setText("更新值");
 				modeButton.setText("并联/串联");
 				openButton.setText("开");
@@ -693,7 +764,6 @@ public class RLCFrame extends JFrame implements ActionListener{
 			case "parser":
 				if (isSer == false) isSer = true;
 				else if (isSer == true) isSer = false;
-				System.out.println(isSer);
 				break;
 				
 		}
