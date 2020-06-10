@@ -61,7 +61,7 @@ public class RLCFrame extends JFrame implements ActionListener{
     Color buttonColorDark = new Color(0, 32, 0);
     
     
-    //操你妈
+    
     //upper right
     JPanel UpperR, UpperC, UpperL, UpperS, UpperSlider;	
     JSlider slider;
